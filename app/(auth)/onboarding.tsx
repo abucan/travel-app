@@ -24,7 +24,7 @@ const OnboardingScreen = () => {
           ref={swiperRef}
           loop={false}
           onIndexChanged={(index) => setActiveIndex(index)}
-          dots={
+          dot={
             <View className="w-[32px] h-[4px] mx-1 bg-[#E2E8F0] rounded-full" />
           }
           activeDot={
