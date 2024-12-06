@@ -1,4 +1,4 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
 import Swiper from "react-native-swiper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { OnboardingSlide } from "@/components/onboarding/onboarding-slide";
@@ -12,24 +12,12 @@ const OnboardingScreen = () => {
   const isLastSlide = activeIndex === Onboarding.length - 1;
 
   return (
-    <SafeAreaView className="flex h-full">
-      <View className="bg-[#FDF6E6] flex-1 relative">
-        <TouchableOpacity
-          onPress={() => router.replace("/(auth)/sign-in")}
-          className="absolute top-5 right-5 "
-        >
-          <Text className="font-helvetica-regular text-lg">Skip</Text>
-        </TouchableOpacity>
+    <SafeAreaView className="flex h-full bg-[#FDF6E6]">
+      <View className="flex-1 relative">
         <Swiper
           ref={swiperRef}
           loop={false}
           onIndexChanged={(index) => setActiveIndex(index)}
-          dot={
-            <View className="w-[32px] h-[4px] mx-1 bg-[#E2E8F0] rounded-full" />
-          }
-          activeDot={
-            <View className="w-[32px] h-[4px] mx-1 bg-[#0286FF] rounded-full" />
-          }
         >
           {Onboarding.map((slide) => (
             <OnboardingSlide
@@ -40,17 +28,30 @@ const OnboardingScreen = () => {
             />
           ))}
         </Swiper>
-        <View className="flex flex-row justify-between max-w-sm mx-auto w-full">
-          <View>
-            <TouchableOpacity>
-              <Text className="font-helvetica-regular text-lg">Back</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity>
-              <Text className="font-helvetica-regular text-lg">Back</Text>
-            </TouchableOpacity>
-          </View>
+        <TouchableOpacity
+          onPress={() => router.replace("/(auth)/sign-in")}
+          className="absolute top-5 right-5 "
+        >
+          <Text className="font-helvetica-regular text-gray-500 text-lg">
+            Skip
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View className="flex flex-row justify-between items-center max-w-sm mx-auto w-full my-10">
+        <View>
+          <TouchableOpacity onPress={() => swiperRef.current?.scrollBy(-1)}>
+            <Text className="font-helvetica-regular text-gray-500 text-lg">
+              Back
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => swiperRef.current?.scrollBy(1)}
+            className="rounded-[24px] bg-slate-500 px-8 py-2"
+          >
+            <Text className="font-helvetica-regular text-lg">Lets's Go</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
