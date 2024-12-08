@@ -9,12 +9,12 @@ export const Onboarding = [
         id: 2,
         header: 'Plan, Book, Explore',
         description: 'Create personalized itineraries, find great deals, and manage your budget—all in one place.',
-        image: require("@/assets/onboarding/Booking.png")
+        image: require("@/assets/onboarding/Traveller.png")
     },
     {
         id: 3,
         header: 'Ready for Your Next Adventure?',
         description: 'Start exploring today with Tripster and join a community of travelers discovering the world smarter and easier.',
-        image: require("@/assets/onboarding/Booking.png")
+        image: require("@/assets/onboarding/Sharing.png")
     }
 ]

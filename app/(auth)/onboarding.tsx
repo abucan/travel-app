@@ -11,6 +11,14 @@ const OnboardingScreen = () => {
   const swiperRef = useRef<Swiper>(null);
   const isLastSlide = activeIndex === Onboarding.length - 1;
 
+  const onNextPress = () => {
+    if (isLastSlide) {
+      router.replace("/(auth)/sign-in");
+    } else {
+      swiperRef.current?.scrollBy(1);
+    }
+  };
+
   return (
     <SafeAreaView className="flex h-full bg-[#FDF6E6]">
       <View className="flex-1 relative">
@@ -30,27 +38,29 @@ const OnboardingScreen = () => {
         </Swiper>
         <TouchableOpacity
           onPress={() => router.replace("/(auth)/sign-in")}
-          className="absolute top-5 right-5 "
+          className="absolute top-5 w-full text-end max-w-sm mx-auto self-center"
         >
-          <Text className="font-helvetica-regular text-gray-500 text-lg">
+          <Text className="font-helvetica-regular text-gray-500 text-xl self-end">
             Skip
           </Text>
         </TouchableOpacity>
       </View>
-      <View className="flex flex-row justify-between items-center max-w-sm mx-auto w-full my-10">
+      <View className="flex flex-row justify-between items-center max-w-sm mx-auto w-full py-10">
         <View>
           <TouchableOpacity onPress={() => swiperRef.current?.scrollBy(-1)}>
-            <Text className="font-helvetica-regular text-gray-500 text-lg">
-              Back
+            <Text className="font-helvetica-regular text-gray-500 text-xl">
+              {activeIndex !== 0 && "Back"}
             </Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity
-            onPress={() => swiperRef.current?.scrollBy(1)}
-            className="rounded-[24px] bg-slate-500 px-8 py-2"
+            onPress={onNextPress}
+            className="rounded-[24px] bg-blue-900 px-10 py-3"
           >
-            <Text className="font-helvetica-regular text-lg">Lets's Go</Text>
+            <Text className="font-helvetica-regular text-xl text-white">
+              {isLastSlide ? "Get Started" : "Continue"}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

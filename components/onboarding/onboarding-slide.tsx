@@ -10,13 +10,13 @@ export const OnboardingSlide = ({
   description: string;
 }) => {
   return (
-    <View className="flex-1 items-center justify-start">
-      <Image source={source} resizeMode="contain" className="w-1/2 h-1/2" />
-      <View className="items-center">
-        <Text className="font-helvetica-bold max-w-sm text-3xl text-center">
+    <View className="flex-1 items-center justify-start gap-12">
+      <Image source={source} resizeMode="contain" className="flex-[60%]" />
+      <View className="items-center gap-2 flex-[40%]">
+        <Text className="font-helvetica-bold max-w-sm text-4xl text-center">
           {header}
         </Text>
-        <Text className="font-helvetica-regular max-w-sm text-center text-lg">
+        <Text className="font-helvetica-medium text-gray-600 max-w-sm text-center text-xl">
           {description}
         </Text>
       </View>
