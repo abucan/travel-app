@@ -2,10 +2,10 @@ import { Redirect } from "expo-router";
 
 const FlowScreen = () => {
   // TODO: retrieve a real user
-  const user = false;
+  const user = true;
 
   if (user) {
-    return <Redirect href={"/(tabs)"} />;
+    return <Redirect href={"/(auth)/sign-up"} />;
   }
 
   return <Redirect href={"/(auth)/onboarding"} />;

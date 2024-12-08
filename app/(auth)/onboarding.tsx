@@ -1,4 +1,4 @@
-import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import Swiper from "react-native-swiper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { OnboardingSlide } from "@/components/onboarding/onboarding-slide";
@@ -38,7 +38,7 @@ const OnboardingScreen = () => {
         </Swiper>
         <TouchableOpacity
           onPress={() => router.replace("/(auth)/sign-in")}
-          className="absolute top-5 w-full text-end max-w-sm mx-auto self-center"
+          className="absolute w-full text-end max-w-sm mx-auto self-center"
         >
           <Text className="font-helvetica-regular text-gray-500 text-xl self-end">
             Skip
