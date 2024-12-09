@@ -40,7 +40,7 @@ const OnboardingScreen = () => {
           onPress={() => router.replace("/(auth)/sign-in")}
           className="absolute w-full text-end max-w-sm mx-auto self-center"
         >
-          <Text className="font-helvetica-regular text-gray-500 text-xl self-end">
+          <Text className="font-helvetica-regular mt-5 text-gray-500 text-xl self-end">
             Skip
           </Text>
         </TouchableOpacity>

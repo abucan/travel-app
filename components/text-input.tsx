@@ -1,23 +1,29 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { CustomTextInputProps } from "@/types";
+import { View, TextInput, Text } from "react-native";
 
-const IconInput = ({
+export const CustomTextInput = ({
   icon,
   placeholder,
   value,
   label,
   onChangeText,
   secureTextEntry = false,
+  error,
   ...props
-}: any) => {
+}: CustomTextInputProps) => {
   return (
-    <View className="flex fle-col items-start justify-start gap-2">
+    <View className="flex flex-col items-start justify-start gap-1">
       <Text className="font-helvetica-bold text-lg">{label}</Text>
-      <View style={styles.container}>
-        <Ionicons name={icon} size={24} color="gray" style={styles.icon} />
+      <View
+        className={`flex flex-row items-center border rounded-md p-2 ${
+          error ? "border-red-500" : "border-gray-300"
+        }`}
+      >
+        <Ionicons name={icon} size={24} color="gray" className="mr-2" />
         <TextInput
-          style={styles.input}
+          className="flex-1 text-base"
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
@@ -25,27 +31,7 @@ const IconInput = ({
           {...props}
         />
       </View>
+      {error && <Text className="text-red-500 text-sm mt-1">{error}</Text>}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "gray",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  icon: {
-    marginRight: 10,
-  },
-  input: {
-    flex: 1,
-    fontSize: 16,
-  },
-});
-
-export default IconInput;

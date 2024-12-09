@@ -1,8 +1,8 @@
 import React from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { View, TouchableOpacity, Text } from "react-native";
 
-const SignUpButtons = () => {
+export const SignUpButtons = () => {
   const handleGoogleSignUp = () => {
     // Implement Google sign-up logic here
     console.log("Google sign-up pressed");
@@ -14,49 +14,25 @@ const SignUpButtons = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View className="gap-4">
       <TouchableOpacity
-        style={[styles.button, styles.googleButton]}
+        className="w-full bg-[#4285F4] py-4 rounded-[24px] flex flex-row items-center justify-center"
         onPress={handleGoogleSignUp}
       >
-        <Ionicons name="logo-google" size={24} color="white" />
-        <Text style={styles.buttonText}>Sign up with Google</Text>
+        <Ionicons name="logo-google" className="mr-2" size={24} color="white" />
+        <Text className="text-white text-center text-lg font-helvetica-regular">
+          Sign up with Google
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, styles.appleButton]}
+        className="w-full bg-[#000000] py-4 rounded-[24px] flex flex-row items-center justify-center"
         onPress={handleAppleSignUp}
       >
-        <Ionicons name="logo-apple" size={24} color="white" />
-        <Text style={styles.buttonText}>Sign up with Apple</Text>
+        <Ionicons name="logo-apple" className="mr-2" size={24} color="white" />
+        <Text className="text-white text-center text-lg font-helvetica-regular">
+          Sign up with Apple
+        </Text>
       </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  button: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 12,
-  },
-  googleButton: {
-    backgroundColor: "#4285F4",
-  },
-  appleButton: {
-    backgroundColor: "#000",
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
-    marginLeft: 10,
-  },
-});
-
-export default SignUpButtons;
