@@ -33,9 +33,8 @@ const SignUpScreen = () => {
   const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
     try {
       setLoading(true);
-      console.log(values);
       await signUp(values.email, values.password);
-      router.replace("/(tabs)");
+      router.replace("/(auth)/verify-otp");
     } catch (error) {
       console.error("Error signing up", error);
     } finally {

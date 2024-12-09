@@ -6,22 +6,26 @@ interface AuthState {
   user: User | null;
   session: Session | null;
   loading: boolean;
+  userEmail: string | null;
   signUp: (email: string, password: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
+  verifyOTP: (otp: string) => Promise<void>;
+  resendOTP: () => Promise<void>;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   session: null,
   loading: true,
+  userEmail: null,
   signUp: async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-    });
+    });    
     if (error) throw error;
-    set({ user: data.user, session: data.session });
+    set({ user: data.user, session: data.session, userEmail: email });
   },
   signIn: async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -33,6 +37,32 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
   signOut: async () => {
     await supabase.auth.signOut();
-    set({ user: null, session: null });
+    set({ user: null, session: null, userEmail: null });
+  },
+  verifyOTP: async (otp: string) => {
+    const state = get();
+    if (!state.userEmail) {
+      throw new Error('No user email found');
+    }
+
+    const { data, error } = await supabase.auth.verifyOtp({
+        email: state.userEmail,
+        token: otp,
+        type: 'email',
+    })
+    if (error) throw error;
+    set({ user: data.user, session: data.session });
+  },
+  resendOTP: async () => {
+    const state = get();
+    if (!state.userEmail) {
+      throw new Error('No user email found');
+    }
+
+    const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email: state.userEmail
+    });
+    if (error) throw error;
   },
 }));

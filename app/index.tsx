@@ -5,7 +5,7 @@ const FlowScreen = () => {
   const user = true;
 
   if (user) {
-    return <Redirect href={"/(auth)/verify-otp"} />;
+    return <Redirect href={"/(auth)/sign-up"} />;
   }
 
   return <Redirect href={"/(auth)/onboarding"} />;
