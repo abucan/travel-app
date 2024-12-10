@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { OtpInput } from "react-native-otp-entry";
-import { useAuthStore } from "@/store/authStore";
-import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import { verifyOTPSchema } from "@/schemas/auth.schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
+import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { useAuthStore } from "@/store/authStore";
+import { OtpInput } from "react-native-otp-entry";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { verifyOTPSchema } from "@/schemas/auth.schemas";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 const VerifyOTPScreen = () => {
   const [loading, setLoading] = useState(false);

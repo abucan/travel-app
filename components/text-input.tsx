@@ -17,11 +17,11 @@ export const CustomTextInput = ({
     <View className="flex flex-col items-start justify-start gap-1">
       <Text className="font-helvetica-bold text-lg">{label}</Text>
       <View
-        className={`flex flex-row items-center border rounded-md p-2 ${
+        className={`flex flex-row items-center border rounded-[12px] p-1 ${
           error ? "border-red-500" : "border-gray-300"
         }`}
       >
-        <Ionicons name={icon} size={24} color="gray" className="mr-2" />
+        <Ionicons name={icon} size={24} color="gray" className="mx-2" />
         <TextInput
           className="flex-1 text-base"
           placeholder={placeholder}
