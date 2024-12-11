@@ -12,6 +12,9 @@ interface AuthState {
   signOut: () => Promise<void>;
   verifyOTP: (otp: string) => Promise<void>;
   resendOTP: () => Promise<void>;
+  isEmailVerified: boolean;
+  checkEmailVerification: () => Promise<boolean>;
+  initializeAuth: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({
@@ -19,6 +22,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   session: null,
   loading: true,
   userEmail: null,
+  isEmailVerified: false,
   signUp: async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -64,5 +68,29 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         email: state.userEmail
     });
     if (error) throw error;
+  },
+  checkEmailVerification: async () => {
+    const { data: { user }, error } = await supabase.auth.getUser();
+    if (error) throw error;
+    
+    // Check confirmed_at instead of email_verified metadata
+    const isVerified = user?.confirmed_at !== null;
+    set({ isEmailVerified: isVerified });
+    return isVerified;
+  },
+  initializeAuth: async () => {
+    const { data: { session }, error } = await supabase.auth.getSession();
+    if (error) throw error;
+    
+    if (session) {
+      const { user } = session;
+      set({ 
+        user, 
+        session,
+        isEmailVerified: user.confirmed_at !== null,
+        userEmail: user.email 
+      });
+    }
+    set({ loading: false });
   },
 }));

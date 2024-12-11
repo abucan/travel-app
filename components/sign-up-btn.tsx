@@ -2,7 +2,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { View, TouchableOpacity, Text } from "react-native";
 
-export const SignUpButtons = () => {
+export const SignUpButtons = ({ isSignIn = false }: { isSignIn?: boolean }) => {
   const handleGoogleSignUp = () => {
     // Implement Google sign-up logic here
     console.log("Google sign-up pressed");
@@ -21,7 +21,7 @@ export const SignUpButtons = () => {
       >
         <Ionicons name="logo-google" className="mr-2" size={24} color="white" />
         <Text className="text-white text-center text-lg font-helvetica-regular">
-          Sign up with Google
+          {isSignIn ? "Sign in with Google" : "Sign up with Google"}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -30,7 +30,7 @@ export const SignUpButtons = () => {
       >
         <Ionicons name="logo-apple" className="mr-2" size={24} color="white" />
         <Text className="text-white text-center text-lg font-helvetica-regular">
-          Sign up with Apple
+          {isSignIn ? "Sign in with Apple" : "Sign up with Apple"}
         </Text>
       </TouchableOpacity>
     </View>

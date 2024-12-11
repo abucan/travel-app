@@ -6,6 +6,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { OnboardingSlide } from "@/components/onboarding/onboarding-slide";
 import { OnboardingModal } from "@/components/onboarding/onboarding-modal";
+import { OnboardingActions } from "@/components/onboarding/onboarding-actions";
 
 const OnboardingScreen = () => {
   const swiperRef = useRef<Swiper>(null);

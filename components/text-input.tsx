@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { CustomTextInputProps } from "@/types";
 import { View, TextInput, Text } from "react-native";
@@ -13,6 +13,12 @@ export const CustomTextInput = ({
   error,
   ...props
 }: CustomTextInputProps) => {
+  const [securePassword, setSecurePassword] = useState(secureTextEntry);
+
+  const handlePasswordVisibility = () => {
+    setSecurePassword(!securePassword);
+  };
+
   return (
     <View className="flex flex-col items-start justify-start gap-1">
       <Text className="font-helvetica-bold text-lg">{label}</Text>
@@ -27,9 +33,18 @@ export const CustomTextInput = ({
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
-          secureTextEntry={secureTextEntry}
+          secureTextEntry={securePassword}
           {...props}
         />
+        {secureTextEntry && (
+          <Ionicons
+            onPress={handlePasswordVisibility}
+            name={securePassword ? "eye-off" : "eye"}
+            size={24}
+            color="gray"
+            className="mx-2"
+          />
+        )}
       </View>
       {error && <Text className="text-red-500 text-sm mt-1">{error}</Text>}
     </View>

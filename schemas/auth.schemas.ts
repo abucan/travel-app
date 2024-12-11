@@ -14,6 +14,13 @@ export const signUpSchema = z.object({
   path: ["confirmPassword"],
 });
 
+export const signInSchema = z.object({
+  email: z.string().email('Invalid email address'),
+  password: z
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+});
+
 export const verifyOTPSchema = z.object({
   otp: z.string().length(6, "Please enter a valid 6-digit code"),
 });
