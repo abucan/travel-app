@@ -6,16 +6,20 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import { useAuthStore } from "@/store/authStore";
 import * as SplashScreen from "expo-splash-screen";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const initializeAuth = useAuthStore((store) => store.initializeAuth);
+  const [authInitialized, setAuthInitialized] = useState(false);
+
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -25,12 +29,32 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (loaded) {
+    const initialize = async () => {
+      try {
+        const cleanup = await initializeAuth();
+        setAuthInitialized(true);
+        return cleanup;
+      } catch (error) {
+        console.error("Failed to initialize auth:", error);
+        setAuthInitialized(true);
+        return undefined;
+      }
+    };
+
+    const cleanupPromise = initialize();
+
+    return () => {
+      cleanupPromise.then((cleanup) => cleanup?.());
+    };
+  }, []);
+
+  useEffect(() => {
+    if (loaded && authInitialized) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, authInitialized]);
 
-  if (!loaded) {
+  if (!loaded || !initializeAuth) {
     return null;
   }
 

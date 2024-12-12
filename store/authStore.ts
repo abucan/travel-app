@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { supabase } from '../lib/supabase';
-import { Session, User } from '@supabase/supabase-js';
+import { create } from "zustand";
+import { supabase } from "../lib/supabase";
+import { Session, User } from "@supabase/supabase-js";
 
 interface AuthState {
   user: User | null;
@@ -14,7 +14,7 @@ interface AuthState {
   resendOTP: () => Promise<void>;
   isEmailVerified: boolean;
   checkEmailVerification: () => Promise<boolean>;
-  initializeAuth: () => Promise<void>;
+  initializeAuth: () => Promise<(() => void) | void>;
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({
@@ -27,7 +27,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-    });    
+    });
     if (error) throw error;
     set({ user: data.user, session: data.session, userEmail: email });
   },
@@ -46,51 +46,82 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   verifyOTP: async (otp: string) => {
     const state = get();
     if (!state.userEmail) {
-      throw new Error('No user email found');
+      throw new Error("No user email found");
     }
 
     const { data, error } = await supabase.auth.verifyOtp({
-        email: state.userEmail,
-        token: otp,
-        type: 'email',
-    })
+      email: state.userEmail,
+      token: otp,
+      type: "email",
+    });
     if (error) throw error;
     set({ user: data.user, session: data.session });
   },
   resendOTP: async () => {
     const state = get();
     if (!state.userEmail) {
-      throw new Error('No user email found');
+      throw new Error("No user email found");
     }
 
     const { error } = await supabase.auth.resend({
-        type: 'signup',
-        email: state.userEmail
+      type: "signup",
+      email: state.userEmail,
     });
     if (error) throw error;
   },
   checkEmailVerification: async () => {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
     if (error) throw error;
-    
+
     // Check confirmed_at instead of email_verified metadata
     const isVerified = user?.confirmed_at !== null;
     set({ isEmailVerified: isVerified });
     return isVerified;
   },
   initializeAuth: async () => {
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
     if (error) throw error;
-    
+
     if (session) {
       const { user } = session;
-      set({ 
-        user, 
+      set({
+        user,
         session,
         isEmailVerified: user.confirmed_at !== null,
-        userEmail: user.email 
+        userEmail: user.email,
       });
     }
+
+    // Set up auth state change listener
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (session) {
+        const { user } = session;
+        set({
+          user,
+          session,
+          isEmailVerified: user.confirmed_at !== null,
+          userEmail: user.email,
+        });
+      } else {
+        set({
+          user: null,
+          session: null,
+          isEmailVerified: false,
+          userEmail: null,
+        });
+      }
+    });
+
     set({ loading: false });
+
+    return () => subscription.unsubscribe();
   },
 }));

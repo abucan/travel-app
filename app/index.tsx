@@ -1,14 +1,9 @@
-import { useEffect } from "react";
 import { Redirect } from "expo-router";
 import { useAuthStore } from "@/store/authStore";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
 const FlowScreen = () => {
-  const { initializeAuth, isEmailVerified, user, loading } = useAuthStore();
-
-  useEffect(() => {
-    initializeAuth();
-  }, []);
+  const { isEmailVerified, user, loading } = useAuthStore();
 
   if (loading) {
     return (
