@@ -10,7 +10,7 @@ export default function HomeScreen() {
     await signOut();
     router.replace("/(auth)/sign-in");
   };
-
+  // TODO
   return (
     <SafeAreaView className="flex-1 w-full h-full items-center justify-center">
       <TouchableOpacity onPress={handleSignOut}>

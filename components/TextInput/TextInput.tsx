@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { styles } from "./TextInput.styles";
 import { Ionicons } from "@expo/vector-icons";
 import { CustomTextInputProps } from "@/types";
 import { View, TextInput, Text } from "react-native";
@@ -20,16 +21,14 @@ export const CustomTextInput = ({
   };
 
   return (
-    <View className="flex flex-col items-start justify-start gap-1">
-      <Text className="font-helvetica-bold text-lg">{label}</Text>
+    <View style={styles.container}>
+      <Text style={styles.textLabel}>{label}</Text>
       <View
-        className={`flex flex-row items-center border rounded-[12px] p-1 ${
-          error ? "border-red-500" : "border-gray-300"
-        }`}
+        style={[styles.textInputContainer, error && { borderColor: "red" }]}
       >
-        <Ionicons name={icon} size={24} color="gray" className="mx-2" />
+        <Ionicons name={icon} size={24} style={styles.icon} />
         <TextInput
-          className="flex-1 text-base"
+          style={styles.textInput}
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
@@ -41,12 +40,11 @@ export const CustomTextInput = ({
             onPress={handlePasswordVisibility}
             name={securePassword ? "eye-off" : "eye"}
             size={24}
-            color="gray"
-            className="mx-2"
+            style={styles.icon}
           />
         )}
       </View>
-      {error && <Text className="text-red-500 text-sm mt-1">{error}</Text>}
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
 };

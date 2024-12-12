@@ -5,9 +5,10 @@ import { useAuthStore } from "@/store/authStore";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema } from "@/schemas/auth.schemas";
-import { SignUpButtons } from "@/components/sign-up-btn";
-import { CustomTextInput } from "@/components/text-input";
+import { styles } from "@/styles/screens/SignUp.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SignUpButtons } from "@/components/SignUpBtn/SignUpBtn";
+import { CustomTextInput } from "@/components/TextInput/TextInput";
 import {
   View,
   Text,
@@ -50,23 +51,21 @@ const SignUpScreen = () => {
   };
 
   return (
-    <SafeAreaView className="flex h-full bg-[#FDF6E6]">
+    <SafeAreaView style={styles.safeContainer}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        className="flex-1"
+        style={{ flex: 1 }}
       >
-        <ScrollView className="flex-1 px-6">
-          <View className="gap-8 w-full mx-auto">
-            <View className="w-full mx-auto mt-8">
-              <Text className="font-helvetica-bold text-3xl">
-                Create Account
-              </Text>
-              <Text className="font-helvetica-regular text-xl text-gray-500">
+        <ScrollView style={styles.scrollContainer}>
+          <View style={styles.container}>
+            <View style={styles.textContainer}>
+              <Text style={styles.headerText}>Create Account</Text>
+              <Text style={styles.descriptionText}>
                 Start planning your perfect trip.
               </Text>
             </View>
 
-            <View className="gap-4">
+            <View style={{ gap: 16 }}>
               <Controller
                 control={control}
                 name="email"
@@ -116,27 +115,23 @@ const SignUpScreen = () => {
               />
             </View>
 
-            <View className="flex flex-col gap-8">
+            <View style={styles.alternativeContainer}>
               <TouchableOpacity
-                className="w-full bg-blue-900 py-4 rounded-[24px]"
+                style={styles.button}
                 onPress={handleSubmit(onSubmit)}
                 disabled={loading}
               >
-                <Text className="font-helvetica-regular text-lg text-white text-center">
-                  Create Account
-                </Text>
+                <Text style={styles.buttonText}>Create Account</Text>
               </TouchableOpacity>
-              <Text className="text-gray-500 font-helvetica-regular text-center text-lg">
-                Or using other method
-              </Text>
+              <Text style={styles.alternativeText}>Or using other method</Text>
               <SignUpButtons />
             </View>
 
             <View>
-              <Text className="text-gray-500 font-helvetica-regular text-center text-lg">
+              <Text style={styles.alternativeText}>
                 Already have an account?{" "}
                 <Text
-                  className="text-blue-900 font-helvetica-bold text-lg"
+                  style={styles.signText}
                   onPress={() => router.push("/(auth)/sign-in")}
                 >
                   Sign In

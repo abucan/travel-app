@@ -7,7 +7,8 @@ import {
 } from "@gorhom/bottom-sheet";
 import { router } from "expo-router";
 import React, { useCallback, useRef } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import { styles } from "./styles/OnboardingModal.styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export const OnboardingModal = ({
@@ -59,26 +60,24 @@ export const OnboardingModal = ({
             backgroundColor: "#FDF6E6",
           }}
         >
-          <BottomSheetView className="px-6 flex flex-col items-center justify-center w-full h-full">
+          <BottomSheetView style={styles.bottomSheetView}>
             <TouchableOpacity
-              className="w-full bg-blue-900 py-4 rounded-[24px]"
+              style={styles.button}
               onPress={() => {
                 router.replace("/(auth)/sign-up");
                 bottomSheetModalRef.current?.dismiss();
               }}
             >
-              <Text className="font-helvetica-regular text-lg text-white text-center">
-                Create Account
-              </Text>
+              <Text style={styles.buttonText}>Create Account</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              className="w-full py-4 border border-blue-900 rounded-[24px] mt-4"
+              style={[styles.button, styles.outlineBtn]}
               onPress={() => {
                 router.replace("/(auth)/sign-in");
                 bottomSheetModalRef.current?.dismiss();
               }}
             >
-              <Text className="font-helvetica-regular text-lg text-black text-center">
+              <Text style={[styles.buttonText, { color: "#1e3a8a" }]}>
                 Already have an account? Sign in
               </Text>
             </TouchableOpacity>

@@ -1,7 +1,7 @@
-import { useAuthStore } from "@/store/authStore";
-import { Redirect } from "expo-router";
 import { useEffect } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { Redirect } from "expo-router";
+import { useAuthStore } from "@/store/authStore";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 
 const FlowScreen = () => {
   const { initializeAuth, isEmailVerified, user, loading } = useAuthStore();
@@ -12,7 +12,7 @@ const FlowScreen = () => {
 
   if (loading) {
     return (
-      <View className="flex-1 items-center justify-center bg-[#FDF6E6]">
+      <View style={styles.container}>
         <ActivityIndicator size="large" color="#1E3A8A" />
       </View>
     );
@@ -28,5 +28,14 @@ const FlowScreen = () => {
 
   return <Redirect href={"/(auth)/onboarding"} />;
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FDF6E6",
+  },
+});
 
 export default FlowScreen;

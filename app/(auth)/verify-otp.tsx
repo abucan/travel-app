@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { verifyOTPSchema } from "@/schemas/auth.schemas";
+import { styles } from "@/styles/screens/VerifyOtp.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
@@ -72,92 +73,84 @@ const VerifyOTPScreen = () => {
   };
 
   return (
-    <SafeAreaView className="flex h-full bg-[#FDF6E6]">
+    <SafeAreaView style={styles.safeContainer}>
       <Modal isVisible={modalVisible}>
-        <View className="flex-col w-full h-fit rounded-[12px] p-6 mx-auto justify-center items-center bg-[#FDF6E6]">
-          <View className="items-center gap-8">
-            <View className="bg-blue-900/20 w-32 h-32 rounded-full flex items-center justify-center">
-              <View className="bg-blue-900 w-24 h-24 rounded-full flex items-center justify-center">
+        <View style={styles.modalContainer}>
+          <View style={styles.body}>
+            <View style={styles.iconOuterCircle}>
+              <View style={styles.iconInnerCircle}>
                 <Ionicons name={"checkmark"} size={32} color="white" />
               </View>
             </View>
 
-            <View className="w-full mx-auto flex flex-col items-center">
-              <Text className="font-helvetica-bold text-3xl">
-                Successfully Verified
-              </Text>
-              <Text className="font-helvetica-medium text-xl text-gray-500 text-center">
+            <View style={[styles.btnContainer, { gap: 0 }]}>
+              <Text style={styles.title}>Successfully Verified</Text>
+              <Text style={styles.description}>
                 Your account has been successfully verified.
               </Text>
             </View>
 
             <TouchableOpacity
-              className="w-full bg-blue-900 py-4 rounded-[24px]"
+              style={styles.button}
               onPress={() => {
                 router.replace("/(tabs)");
               }}
             >
-              <Text className="font-helvetica-regular text-lg text-white text-center">
-                Go to Homepage
-              </Text>
+              <Text style={styles.buttonText}>Go to Homepage</Text>
             </TouchableOpacity>
           </View>
         </View>
       </Modal>
-      <View className="flex-1 flex-col w-full p-6 mx-auto justify-center">
-        <View className="items-center gap-8">
-          <View className="bg-blue-900/20 w-32 h-32 rounded-full flex items-center justify-center">
-            <View className="bg-blue-900 w-24 h-24 rounded-full flex items-center justify-center">
-              <Ionicons name={"mail"} size={32} color="white" />
-            </View>
+      <View style={styles.mainContainer}>
+        <View style={styles.iconOuterCircle}>
+          <View style={styles.iconInnerCircle}>
+            <Ionicons name={"mail"} size={32} color="white" />
           </View>
+        </View>
 
-          <View className="w-full max-w-md mx-auto flex flex-col items-center">
-            <Text className="font-helvetica-bold text-3xl">
-              Verification Code
-            </Text>
-            <Text className="font-helvetica-medium text-xl text-gray-500 text-center">
-              We have sent the verification code to {userEmail || ""}.
-            </Text>
-          </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>Verification Code</Text>
+          <Text style={styles.description}>
+            We have sent the verification code to {userEmail || ""}.
+          </Text>
+        </View>
 
-          <Controller
-            control={control}
-            name="otp"
-            render={({ field: { onChange } }) => (
-              <OtpInput numberOfDigits={6} onTextChange={onChange} />
-            )}
-          />
-
-          {errors.otp && (
-            <Text className="text-red-500 text-sm">{errors.otp.message}</Text>
+        <Controller
+          control={control}
+          name="otp"
+          render={({ field: { onChange } }) => (
+            <OtpInput numberOfDigits={6} onTextChange={onChange} />
           )}
+        />
 
-          <View className="flex flex-col items-center gap-4">
-            <TouchableOpacity
-              className="w-full bg-blue-900 py-4 rounded-[24px]"
-              onPress={handleSubmit(onSubmit)}
-              disabled={loading}
-            >
-              {loading ? (
-                <ActivityIndicator color="white" />
-              ) : (
-                <Text className="font-helvetica-regular text-lg text-white text-center">
-                  Verify Code
-                </Text>
-              )}
-            </TouchableOpacity>
+        {errors.otp && (
+          <Text style={styles.errorMsg}>{errors.otp.message}</Text>
+        )}
 
-            <TouchableOpacity
-              onPress={handleResendOTP}
-              disabled={loading || !canResend}
-              className={`mt-4 ${!canResend ? "opacity-50" : ""}`}
-            >
-              <Text className="font-helvetica-medium text-blue-900">
-                {canResend ? "Resend Code" : `Resend Code (${timer}s)`}
-              </Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleSubmit(onSubmit)}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color="white" />
+            ) : (
+              <Text style={styles.buttonText}>Verify Code</Text>
+            )}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={handleResendOTP}
+            disabled={loading || !canResend}
+            style={{
+              opacity: !canResend ? 0.5 : 1,
+            }}
+          >
+            <Text style={styles.resendBtnText}>
+              {canResend ? "Resend Code" : `Resend Code (${timer}s)`}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
