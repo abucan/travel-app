@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         gap: 24,
-        paddingHorizontal: 22
+        width: '90%',
+        marginHorizontal: 'auto',
     },
 
     image: {
@@ -30,6 +31,5 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         color: '#4b5563',
-        // lineHeight: 24
     }
 })

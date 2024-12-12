@@ -4,25 +4,22 @@ export const styles = StyleSheet.create({
     safeContainer: {
         flex: 1,
         backgroundColor: '#FDF6E6',
-        height: '100%',
     },
 
     container: {
         flex: 1,
-        position: 'relative'
+        position: 'relative',
     },
 
     skipBtn: {
         position: 'absolute',
         width: '95%',
         marginHorizontal: 'auto',
-        justifyContent: 'center',
-        marginTop: 16,
     },
 
     skipBtnText: {
         fontFamily: 'Helvetica-Now-Display-Regular',
-        fontSize: 16,
+        fontSize: 18,
         color: '#6b7280',
         textAlign: 'right'
     },
@@ -34,20 +31,20 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '90%',
         marginHorizontal: 'auto',
-        paddingVertical: 32
+        paddingVertical: 32,
     },
 
     backBtnText: {
         fontFamily: 'Helvetica-Now-Display-Regular',
-        fontSize: 16,
+        fontSize: 18,
         color: '#6b7280',
     },
 
     nextBtn: {
         backgroundColor: '#1e3a8a',
-        borderRadius: 12,
+        borderRadius: 24,
         paddingVertical: 12,
-        paddingHorizontal: 24
+        paddingHorizontal: 36
     },
 
     nextBtnText: {
