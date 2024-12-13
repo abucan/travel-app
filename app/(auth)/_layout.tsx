@@ -28,7 +28,6 @@ const AuthLayout = () => {
             borderBottomColor: "#000",
           },
           headerShadowVisible: false,
-          // statusBarStyle: "dark",
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
               <Ionicons name="arrow-back" size={24} color="#000" />

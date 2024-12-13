@@ -16,7 +16,10 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Image,
 } from "react-native";
+
+import LogoIcon from "@/assets/tripster-icon.svg";
 
 const SignInScreen = () => {
   const signIn = useAuthStore((state) => state.signIn);
@@ -55,6 +58,37 @@ const SignInScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
+        <View
+          className="relative"
+          style={{
+            width: "100%",
+            height: "auto",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <LogoIcon
+            width={450}
+            height={105}
+            style={{
+              alignSelf: "center",
+              position: "relative",
+              zIndex: 1,
+              opacity: 0.3,
+            }}
+          />
+
+          <LogoIcon
+            width={300}
+            height={70}
+            style={{
+              alignSelf: "center",
+              position: "absolute",
+              zIndex: 2,
+            }}
+          />
+        </View>
+
         <ScrollView style={styles.scrollContainer}>
           <View style={styles.container}>
             <View style={styles.textContainer}>

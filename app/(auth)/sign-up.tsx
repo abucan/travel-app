@@ -16,7 +16,10 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Image,
 } from "react-native";
+
+import Logo from "@/assets/tripster.svg";
 
 const SignUpScreen = () => {
   const signUp = useAuthStore((state) => state.signUp);
@@ -56,8 +59,19 @@ const SignUpScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
-        <ScrollView style={styles.scrollContainer}>
+        <ScrollView
+          style={styles.scrollContainer}
+          showsVerticalScrollIndicator={false}
+        >
           <View style={styles.container}>
+            <Image
+              source={require("@/assets/tripster.png")}
+              style={{
+                width: 300,
+                height: 70,
+                alignSelf: "center",
+              }}
+            />
             <View style={styles.textContainer}>
               <Text style={styles.headerText}>Create Account</Text>
               <Text style={styles.descriptionText}>
