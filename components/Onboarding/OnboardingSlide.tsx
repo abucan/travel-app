@@ -1,4 +1,4 @@
-import { styles } from "./styles/OnboardingSlide.styles";
+import { styles } from "./styles/onboardingSlide.styles";
 import { View, Text, Image, ImageSourcePropType } from "react-native";
 
 export const OnboardingSlide = ({

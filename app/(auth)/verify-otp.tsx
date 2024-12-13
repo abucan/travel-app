@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { verifyOTPSchema } from "@/schemas/auth.schemas";
-import { styles } from "@/styles/screens/VerifyOtp.styles";
+import { styles } from "@/styles/screens/verifyOtp.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 

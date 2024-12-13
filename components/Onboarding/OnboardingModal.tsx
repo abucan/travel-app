@@ -8,7 +8,7 @@ import {
 import { router } from "expo-router";
 import React, { useCallback, useRef } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { styles } from "./styles/OnboardingModal.styles";
+import { styles } from "./styles/onboardingModal.styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export const OnboardingModal = ({

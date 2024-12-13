@@ -5,7 +5,7 @@ import { useAuthStore } from "@/store/authStore";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema } from "@/schemas/auth.schemas";
-import { styles } from "@/styles/screens/SignUp.styles";
+import { styles } from "@/styles/screens/signUp.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SignUpButtons } from "@/components/SignUpBtn/SignUpBtn";
 import { CustomTextInput } from "@/components/TextInput/TextInput";

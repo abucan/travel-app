@@ -1,5 +1,5 @@
 import React from "react";
-import { styles } from "./SignUpBtn.styles";
+import { styles } from "./signUpBtn.styles";
 import { Ionicons } from "@expo/vector-icons";
 import { View, TouchableOpacity, Text } from "react-native";
 

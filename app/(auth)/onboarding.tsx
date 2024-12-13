@@ -3,7 +3,7 @@ import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
 import { Onboarding } from "@/constants/Onboarding";
 import { Text, TouchableOpacity, View } from "react-native";
-import { styles } from "@/styles/screens/Onboarding.styles";
+import { styles } from "@/styles/screens/onboarding.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { OnboardingSlide } from "@/components/Onboarding/OnboardingSlide";
 import { OnboardingModal } from "@/components/Onboarding/OnboardingModal";
