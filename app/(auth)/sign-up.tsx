@@ -12,16 +12,19 @@ import { CustomTextInput } from "@/components/TextInput/TextInput";
 import {
   View,
   Text,
-  TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-  Image,
 } from "react-native";
 
-import Logo from "@/assets/tripster.svg";
+import { BrandLogo } from "@/components/Logo/Logo";
+import { AppButton } from "@/components/Buttons/AppButton";
+import { Header } from "@/components/Header/Header";
+
+import { useHeaderHeight } from "@react-navigation/elements";
 
 const SignUpScreen = () => {
+  const headerHeight = useHeaderHeight();
   const signUp = useAuthStore((state) => state.signUp);
   const [loading, setLoading] = useState(false);
 
@@ -54,30 +57,20 @@ const SignUpScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.safeContainer}>
+    <SafeAreaView
+      style={[styles.safeContainer, { paddingTop: headerHeight / 2 }]}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
-        <ScrollView
-          style={styles.scrollContainer}
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.container}>
-            <Image
-              source={require("@/assets/tripster.png")}
-              style={{
-                width: 300,
-                height: 70,
-                alignSelf: "center",
-              }}
+        <View style={styles.container}>
+          <View style={styles.formContainer}>
+            <Header
+              title="Create Account"
+              description="Start planning your perfect trip."
+              position="left"
             />
-            <View style={styles.textContainer}>
-              <Text style={styles.headerText}>Create Account</Text>
-              <Text style={styles.descriptionText}>
-                Start planning your perfect trip.
-              </Text>
-            </View>
 
             <View style={{ gap: 16 }}>
               <Controller
@@ -88,7 +81,6 @@ const SignUpScreen = () => {
                     placeholder="Email"
                     secureTextEntry={false}
                     icon="mail"
-                    label="Email"
                     onChangeText={onChange}
                     value={value}
                     error={errors.email?.message}
@@ -104,7 +96,6 @@ const SignUpScreen = () => {
                     placeholder="Password"
                     secureTextEntry={true}
                     icon="lock-closed"
-                    label="Password"
                     onChangeText={onChange}
                     value={value}
                     error={errors.password?.message}
@@ -120,7 +111,6 @@ const SignUpScreen = () => {
                     placeholder="Confirm Password"
                     secureTextEntry={true}
                     icon="lock-closed"
-                    label="Confirm Password"
                     onChangeText={onChange}
                     value={value}
                     error={errors.confirmPassword?.message}
@@ -130,30 +120,28 @@ const SignUpScreen = () => {
             </View>
 
             <View style={styles.alternativeContainer}>
-              <TouchableOpacity
-                style={styles.button}
+              <AppButton
+                title="Sign Up"
                 onPress={handleSubmit(onSubmit)}
                 disabled={loading}
-              >
-                <Text style={styles.buttonText}>Create Account</Text>
-              </TouchableOpacity>
+              />
               <Text style={styles.alternativeText}>Or using other method</Text>
               <SignUpButtons />
             </View>
-
-            <View>
-              <Text style={styles.alternativeText}>
-                Already have an account?{" "}
-                <Text
-                  style={styles.signText}
-                  onPress={() => router.push("/(auth)/sign-in")}
-                >
-                  Sign In
-                </Text>
-              </Text>
-            </View>
           </View>
-        </ScrollView>
+
+          <View>
+            <Text style={styles.alternativeText}>
+              Already have an account?{" "}
+              <Text
+                style={styles.signText}
+                onPress={() => router.push("/(auth)/sign-in")}
+              >
+                Sign In
+              </Text>
+            </Text>
+          </View>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

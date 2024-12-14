@@ -22,7 +22,7 @@ export const CustomTextInput = ({
 
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.textLabel}>{label}</Text> */}
+      {label && <Text style={styles.textLabel}>{label}</Text>}
       <View
         style={[styles.textInputContainer, error && { borderColor: "red" }]}
       >

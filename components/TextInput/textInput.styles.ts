@@ -21,12 +21,13 @@ export const styles = StyleSheet.create({
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 12,
         borderColor: '#CFCFCF',
-        padding: 4
     },
 
     textInput: {
         flex: 1,
         fontSize: 14,
+        paddingVertical: 16,
+        paddingHorizontal: 4
     },
 
     icon: {

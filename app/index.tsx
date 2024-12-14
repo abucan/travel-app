@@ -1,4 +1,5 @@
 import { Redirect } from "expo-router";
+import { Colors } from "@/constants/Colors";
 import { useAuthStore } from "@/store/authStore";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#FDF6E6",
+    backgroundColor: Colors.light.background,
   },
 });
 

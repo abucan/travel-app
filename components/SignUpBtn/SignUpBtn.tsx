@@ -1,7 +1,10 @@
 import React from "react";
 import { styles } from "./signUpBtn.styles";
-import { Ionicons } from "@expo/vector-icons";
 import { View, TouchableOpacity, Text } from "react-native";
+
+// svg
+import AppleIcon from "@/assets/icons/apple.svg";
+import GoogleIcon from "@/assets/icons/google.svg";
 
 export const SignUpButtons = ({ isSignIn = false }: { isSignIn?: boolean }) => {
   const handleGoogleSignUp = () => {
@@ -16,30 +19,13 @@ export const SignUpButtons = ({ isSignIn = false }: { isSignIn?: boolean }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.googleBtn} onPress={handleGoogleSignUp}>
-        <Ionicons
-          name="logo-google"
-          style={styles.icon}
-          size={24}
-          color="white"
-        />
-        <Text style={styles.btnText}>
-          {isSignIn ? "Sign in with Google" : "Sign up with Google"}
-        </Text>
+      <TouchableOpacity style={styles.btn} onPress={handleGoogleSignUp}>
+        <GoogleIcon style={styles.icon} width={24} height={24} />
+        <Text style={styles.btnText}>Google</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.googleBtn, styles.appleBtn]}
-        onPress={handleAppleSignUp}
-      >
-        <Ionicons
-          name="logo-apple"
-          style={styles.icon}
-          size={24}
-          color="white"
-        />
-        <Text style={styles.btnText}>
-          {isSignIn ? "Sign in with Apple" : "Sign up with Apple"}
-        </Text>
+      <TouchableOpacity style={styles.btn} onPress={handleAppleSignUp}>
+        <AppleIcon style={styles.icon} width={24} height={24} />
+        <Text style={styles.btnText}>Apple</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,15 +1,22 @@
+import { Colors } from "@/constants/Colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        gap: 16
+        gap: 16,
+        display: 'flex',
+        flexDirection: 'row'
     },
 
-    googleBtn: {
+    btn: {
         width: '100%',
-        backgroundColor: '#4285F4',
-        padding: 12,
+        backgroundColor: Colors.light.background,
+        paddingVertical: 14,
         borderRadius: 12,
+
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: '#CFCFCF',
+        flex: 1,
 
         display: 'flex',
         flexDirection: 'row',
@@ -18,14 +25,10 @@ export const styles = StyleSheet.create({
     },
 
     btnText: {
-        color: '#fff',
+        color: 'black',
         textAlign: 'center',
         fontSize: 16,
-        fontFamily: 'Helvetica-Now-Display-Regular'
-    },
-
-    appleBtn: {
-        backgroundColor: '#000',
+        fontFamily: 'Helvetica-Now-Display-Medium'
     },
 
     icon: {

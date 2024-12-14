@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     fontFamily: "Helvetica-Now-Display-Bold",
     fontSize: 30,
     textAlign: "center",
+    lineHeight: 36,
   },
 
   descriptionText: {
@@ -32,6 +33,6 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     color: "#4b5563",
-    lineHeight: 22,
+    lineHeight: 24,
   },
 });

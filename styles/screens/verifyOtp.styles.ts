@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "@/constants/Colors";
 
 export const styles = StyleSheet.create({
     safeContainer: {
         flex: 1,
-        backgroundColor: '#FDF6E6',
+        backgroundColor: Colors.light.background,
         height: '100%',
     },
 
@@ -17,7 +18,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: 'auto',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#FDF6E6'
+        backgroundColor: Colors.light.background
     },
 
     body: {

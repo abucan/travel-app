@@ -6,10 +6,15 @@ import {
   BottomSheetBackdrop,
 } from "@gorhom/bottom-sheet";
 import { router } from "expo-router";
+import { Colors } from "@/constants/Colors";
 import React, { useCallback, useRef } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { globalStyles } from "@/styles/global.styles";
+import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles/onboardingModal.styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { LogoIcon } from "../Logo/LogoIcon";
+import { AppButton } from "../Buttons/AppButton";
+import { Header } from "../Header/Header";
 
 export const OnboardingModal = ({
   children,
@@ -57,30 +62,32 @@ export const OnboardingModal = ({
           enablePanDownToClose={true}
           backdropComponent={renderBackdrop}
           backgroundStyle={{
-            backgroundColor: "#FDF6E6",
+            backgroundColor: Colors.light.background,
           }}
         >
           <BottomSheetView style={styles.bottomSheetView}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                router.replace("/(auth)/sign-up");
-                bottomSheetModalRef.current?.dismiss();
-              }}
-            >
-              <Text style={styles.buttonText}>Create Account</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, styles.outlineBtn]}
-              onPress={() => {
-                router.replace("/(auth)/sign-in");
-                bottomSheetModalRef.current?.dismiss();
-              }}
-            >
-              <Text style={[styles.buttonText, { color: "#1e3a8a" }]}>
-                Already have an account? Sign in
-              </Text>
-            </TouchableOpacity>
+            <LogoIcon />
+            <Header
+              title="Welcome to Tripster"
+              description="Choose one of the options below to get started."
+            />
+            <View style={styles.buttonContainer}>
+              <AppButton
+                title="Create Account"
+                onPress={() => {
+                  router.replace("/(auth)/sign-up");
+                  bottomSheetModalRef.current?.dismiss();
+                }}
+              />
+              <AppButton
+                title="Sign In"
+                variant="link"
+                onPress={() => {
+                  router.replace("/(auth)/sign-in");
+                  bottomSheetModalRef.current?.dismiss();
+                }}
+              />
+            </View>
           </BottomSheetView>
         </BottomSheetModal>
       </BottomSheetModalProvider>
