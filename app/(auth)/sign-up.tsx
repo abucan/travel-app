@@ -57,9 +57,7 @@ const SignUpScreen = () => {
   };
 
   return (
-    <SafeAreaView
-      style={[styles.safeContainer, { paddingTop: headerHeight / 2 }]}
-    >
+    <SafeAreaView style={[styles.safeContainer, { paddingTop: headerHeight }]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}

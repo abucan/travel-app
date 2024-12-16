@@ -1,29 +1,20 @@
 import React from "react";
+import { Platform } from "react-native";
 import { router, Stack } from "expo-router";
 import { Colors } from "@/constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
 
 const AuthLayout = () => {
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
-        title: "",
+        headerShown: false,
+        statusBarStyle: Platform.OS === "android" ? "dark" : "auto",
+        statusBarBackgroundColor: Colors.light.background,
         headerStyle: {
           backgroundColor: Colors.light.background,
         },
         headerShadowVisible: false,
         headerTransparent: true,
-        headerLeft: () => {
-          if (router.canGoBack()) {
-            return (
-              <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="arrow-back" size={24} color="#000" />
-              </TouchableOpacity>
-            );
-          }
-        },
       }}
     >
       <Stack.Screen name="onboarding" options={{ headerShown: false }} />

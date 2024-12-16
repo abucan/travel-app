@@ -8,8 +8,7 @@ import {
 import { router } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import React, { useCallback, useRef } from "react";
-import { globalStyles } from "@/styles/global.styles";
-import { Text, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { styles } from "./styles/onboardingModal.styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { LogoIcon } from "../Logo/LogoIcon";
@@ -66,10 +65,11 @@ export const OnboardingModal = ({
           }}
         >
           <BottomSheetView style={styles.bottomSheetView}>
-            <LogoIcon />
+            {/* <LogoIcon /> */}
             <Header
               title="Welcome to Tripster"
               description="Choose one of the options below to get started."
+              // position="left"
             />
             <View style={styles.buttonContainer}>
               <AppButton

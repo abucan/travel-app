@@ -29,7 +29,7 @@ const OnboardingScreen = () => {
   return (
     <SafeAreaView style={styles.safeContainer}>
       <OnboardingModal
-        snapPoints={["40%"]}
+        snapPoints={["35%"]}
         onPresent={(present) => (presentModal = present)}
       >
         <View style={styles.container}>

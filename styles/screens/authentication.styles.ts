@@ -13,10 +13,11 @@ export const styles = StyleSheet.create({
     marginHorizontal: "auto",
     flex: 1,
     justifyContent: "space-between",
+    paddingVertical: 32,
   },
 
   formContainer: {
-    gap: 24
+    gap: 24,
   },
 
   alternativeContainer: {

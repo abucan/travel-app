@@ -11,6 +11,7 @@ import { verifyOTPSchema } from "@/schemas/auth.schemas";
 import { styles } from "@/styles/screens/verifyOtp.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { Header } from "@/components/Header/Header";
 
 const VerifyOTPScreen = () => {
   const [loading, setLoading] = useState(false);
@@ -82,14 +83,11 @@ const VerifyOTPScreen = () => {
                 <Ionicons name={"checkmark"} size={32} color="white" />
               </View>
             </View>
-
-            <View style={[styles.btnContainer, { gap: 0 }]}>
-              <Text style={styles.title}>Successfully Verified</Text>
-              <Text style={styles.description}>
-                Your account has been successfully verified.
-              </Text>
-            </View>
-
+            <Header
+              title="Successfully Verified"
+              description="Your account has been successfully verified.
+"
+            />
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
@@ -102,26 +100,26 @@ const VerifyOTPScreen = () => {
         </View>
       </Modal>
       <View style={styles.mainContainer}>
-        <View style={styles.iconOuterCircle}>
-          <View style={styles.iconInnerCircle}>
-            <Ionicons name={"mail"} size={32} color="white" />
-          </View>
+        <View style={styles.headerContainer}>
+          <Header
+            title="Verification Code"
+            description={`We have sent the verification code to ${
+              userEmail || ""
+            }.`}
+            position="left"
+          />
+          <Controller
+            control={control}
+            name="otp"
+            render={({ field: { onChange } }) => (
+              <OtpInput
+                type="numeric"
+                numberOfDigits={6}
+                onTextChange={onChange}
+              />
+            )}
+          />
         </View>
-
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>Verification Code</Text>
-          <Text style={styles.description}>
-            We have sent the verification code to {userEmail || ""}.
-          </Text>
-        </View>
-
-        <Controller
-          control={control}
-          name="otp"
-          render={({ field: { onChange } }) => (
-            <OtpInput numberOfDigits={6} onTextChange={onChange} />
-          )}
-        />
 
         {errors.otp && (
           <Text style={styles.errorMsg}>{errors.otp.message}</Text>
@@ -131,7 +129,7 @@ const VerifyOTPScreen = () => {
           <TouchableOpacity
             style={styles.button}
             onPress={handleSubmit(onSubmit)}
-            disabled={loading}
+            disabled={loading || !userEmail}
           >
             {loading ? (
               <ActivityIndicator color="white" />
@@ -142,7 +140,7 @@ const VerifyOTPScreen = () => {
 
           <TouchableOpacity
             onPress={handleResendOTP}
-            disabled={loading || !canResend}
+            disabled={loading || !canResend || !userEmail}
             style={{
               opacity: !canResend ? 0.5 : 1,
             }}

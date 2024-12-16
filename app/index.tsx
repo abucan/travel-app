@@ -14,7 +14,7 @@ const FlowScreen = () => {
     );
   }
 
-  if (user && !isEmailVerified) {
+  if (true) {
     return <Redirect href="/(auth)/verify-otp" />;
   }
 
