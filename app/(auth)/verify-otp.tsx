@@ -1,17 +1,17 @@
-import { set, z } from "zod";
+import { z } from "zod";
 import { router } from "expo-router";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuthStore } from "@/store/authStore";
 import { OtpInput } from "react-native-otp-entry";
 import React, { useEffect, useState } from "react";
+import { Header } from "@/components/Header/Header";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { verifyOTPSchema } from "@/schemas/auth.schemas";
-import { styles } from "@/styles/screens/verifyOtp.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { styles } from "@/styles/screens/VerifyOtpScreen.styles";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import { Header } from "@/components/Header/Header";
 
 const VerifyOTPScreen = () => {
   const [loading, setLoading] = useState(false);

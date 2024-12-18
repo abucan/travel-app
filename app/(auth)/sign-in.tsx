@@ -5,20 +5,18 @@ import { useAuthStore } from "@/store/authStore";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "@/schemas/auth.schemas";
+import { styles } from "@/styles/screens/AuthScreen.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "@/styles/screens/authentication.styles";
-import { SignUpButtons } from "@/components/SignUpBtn/SignUpBtn";
-import { CustomTextInput } from "@/components/TextInput/TextInput";
+import { SignUpButtons } from "@/components/signUpBtn/SignUpBtn";
+import { CustomTextInput } from "@/components/textInput/TextInput";
 import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
 
-import { BrandLogo } from "@/components/Logo/Logo";
 import { AppButton } from "@/components/buttons/AppButton";
 import { Header } from "@/components/Header/Header";
 import { useHeaderHeight } from "@react-navigation/elements";
