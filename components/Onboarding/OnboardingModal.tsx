@@ -12,7 +12,7 @@ import { View } from "react-native";
 import { styles } from "./styles/onboardingModal.styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { LogoIcon } from "../Logo/LogoIcon";
-import { AppButton } from "../Buttons/AppButton";
+import { AppButton } from "../buttons/AppButton";
 import { Header } from "../Header/Header";
 
 export const OnboardingModal = ({

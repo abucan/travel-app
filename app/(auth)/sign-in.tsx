@@ -19,7 +19,7 @@ import {
 } from "react-native";
 
 import { BrandLogo } from "@/components/Logo/Logo";
-import { AppButton } from "@/components/Buttons/AppButton";
+import { AppButton } from "@/components/buttons/AppButton";
 import { Header } from "@/components/Header/Header";
 import { useHeaderHeight } from "@react-navigation/elements";
 
