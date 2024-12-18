@@ -1,7 +1,7 @@
-import { styles } from "../header/Header.styles";
 import { View, Text } from "react-native";
+import { styles } from "./Headline.styles";
 
-export const Header = ({
+export const Headline = ({
   title,
   description,
   position = "center",
@@ -11,12 +11,19 @@ export const Header = ({
   position?: "center" | "left";
 }) => {
   const textPosition =
-    position === "left" ? styles.leftAlign : styles.textContainer;
+    position === "left" ? styles.itemLeftAlign : styles.textContainer;
 
   return (
     <View style={[styles.textContainer, textPosition]}>
       <Text style={styles.headerText}>{title}</Text>
-      <Text style={styles.descriptionText}>{description}</Text>
+      <Text
+        style={[
+          styles.descriptionText,
+          position === "left" && styles.textLeftAlign,
+        ]}
+      >
+        {description}
+      </Text>
     </View>
   );
 };

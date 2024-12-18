@@ -15,10 +15,14 @@ export const styles = StyleSheet.create({
     fontFamily: "Helvetica-Now-Display-Regular",
     fontSize: 18,
     color: "#6b7280",
-    textAlign: "center",
+    textAlign: "left",
   },
 
-  leftAlign: {
+  textLeftAlign: {
+    textAlign: "left",
+  },
+
+  itemLeftAlign: {
     alignItems: "flex-start",
   },
 });

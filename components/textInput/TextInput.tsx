@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { styles } from "./textInput.styles";
+import { styles } from "./TextInput.styles";
 import { Ionicons } from "@expo/vector-icons";
 import { CustomTextInputProps } from "@/types";
 import { View, TextInput, Text } from "react-native";

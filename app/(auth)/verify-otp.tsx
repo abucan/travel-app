@@ -5,10 +5,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { useAuthStore } from "@/store/authStore";
 import { OtpInput } from "react-native-otp-entry";
 import React, { useEffect, useState } from "react";
-import { Header } from "@/components/Header/Header";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { verifyOTPSchema } from "@/schemas/auth.schemas";
+import { Headline } from "@/components/headline/Headline";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "@/styles/screens/VerifyOtpScreen.styles";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
@@ -83,7 +83,7 @@ const VerifyOTPScreen = () => {
                 <Ionicons name={"checkmark"} size={32} color="white" />
               </View>
             </View>
-            <Header
+            <Headline
               title="Successfully Verified"
               description="Your account has been successfully verified.
 "
@@ -101,7 +101,7 @@ const VerifyOTPScreen = () => {
       </Modal>
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
-          <Header
+          <Headline
             title="Verification Code"
             description={`We have sent the verification code to ${
               userEmail || ""

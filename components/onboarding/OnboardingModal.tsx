@@ -5,15 +5,14 @@ import {
   BottomSheetBackdropProps,
   BottomSheetBackdrop,
 } from "@gorhom/bottom-sheet";
+import { View } from "react-native";
 import { router } from "expo-router";
 import { Colors } from "@/constants/Colors";
-import React, { useCallback, useRef } from "react";
-import { View } from "react-native";
-import { styles } from "./styles/onboardingModal.styles";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { LogoIcon } from "../Logo/LogoIcon";
+import { Headline } from "../headline/Headline";
 import { AppButton } from "../buttons/AppButton";
-import { Header } from "../Header/Header";
+import React, { useCallback, useRef } from "react";
+import { styles } from "./styles/OnboardingModal.styles";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export const OnboardingModal = ({
   children,
@@ -28,7 +27,6 @@ export const OnboardingModal = ({
 }) => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-  // Expose control methods
   React.useEffect(() => {
     if (onPresent) {
       onPresent(() => bottomSheetModalRef.current?.present());
@@ -65,11 +63,10 @@ export const OnboardingModal = ({
           }}
         >
           <BottomSheetView style={styles.bottomSheetView}>
-            {/* <LogoIcon /> */}
-            <Header
+            <Headline
               title="Welcome to Tripster"
               description="Choose one of the options below to get started."
-              // position="left"
+              position="left"
             />
             <View style={styles.buttonContainer}>
               <AppButton

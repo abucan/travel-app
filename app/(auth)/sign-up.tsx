@@ -11,8 +11,8 @@ import { SignUpButtons } from "@/components/signUpBtn/SignUpBtn";
 import { CustomTextInput } from "@/components/textInput/TextInput";
 import { View, Text, KeyboardAvoidingView, Platform } from "react-native";
 
+import { Headline } from "@/components/headline/Headline";
 import { AppButton } from "@/components/buttons/AppButton";
-import { Header } from "@/components/Header/Header";
 
 import { useHeaderHeight } from "@react-navigation/elements";
 
@@ -57,7 +57,7 @@ const SignUpScreen = () => {
       >
         <View style={styles.container}>
           <View style={styles.formContainer}>
-            <Header
+            <Headline
               title="Create Account"
               description="Start planning your perfect trip."
               position="left"

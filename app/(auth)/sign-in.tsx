@@ -17,8 +17,8 @@ import {
   Platform,
 } from "react-native";
 
+import { Headline } from "@/components/headline/Headline";
 import { AppButton } from "@/components/buttons/AppButton";
-import { Header } from "@/components/Header/Header";
 import { useHeaderHeight } from "@react-navigation/elements";
 
 const SignInScreen = () => {
@@ -61,7 +61,7 @@ const SignInScreen = () => {
       >
         <View style={styles.container}>
           <View style={styles.formContainer}>
-            <Header
+            <Headline
               title="Welcome back 👋 "
               description="Please enter your email and password."
               position="left"

@@ -13,13 +13,14 @@ const AuthLayout = () => {
         headerStyle: {
           backgroundColor: Colors.light.background,
         },
-        headerShadowVisible: false,
         headerTransparent: true,
+        headerShadowVisible: false,
+        animation: "fade_from_bottom",
       }}
     >
       <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-      <Stack.Screen name="sign-in" />
       <Stack.Screen name="sign-up" />
+      <Stack.Screen name="sign-in" />
       <Stack.Screen name="verify-otp" />
     </Stack>
   );
