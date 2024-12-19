@@ -15,7 +15,7 @@ export const AppButton = ({
   const buttonStyle = variant === "link" ? styles.linkButton : styles.button;
   const textStyle =
     variant === "link"
-      ? [styles.buttonText, { color: "#1e3a8a" }]
+      ? [styles.buttonText, { color: "#fff" }]
       : styles.buttonText;
 
   return (

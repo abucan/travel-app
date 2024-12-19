@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     fontFamily: "Helvetica-Now-Display-Regular",
     fontSize: 18,
     color: "#6b7280",
-    textAlign: "left",
+    textAlign: "center",
   },
 
   textLeftAlign: {

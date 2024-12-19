@@ -12,6 +12,7 @@ import { Headline } from "@/components/headline/Headline";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "@/styles/screens/VerifyOtpScreen.styles";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { MyModal } from "@/components/modal/Modal";
 
 const VerifyOTPScreen = () => {
   const [loading, setLoading] = useState(false);
@@ -75,30 +76,32 @@ const VerifyOTPScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeContainer}>
-      <Modal isVisible={modalVisible}>
-        <View style={styles.modalContainer}>
-          <View style={styles.body}>
-            <View style={styles.iconOuterCircle}>
-              <View style={styles.iconInnerCircle}>
-                <Ionicons name={"checkmark"} size={32} color="white" />
-              </View>
+      <MyModal
+        modalOpen={modalVisible}
+        setModalOpen={setModalVisible}
+        disableOutsideClick
+      >
+        <View style={styles.body}>
+          <View style={styles.iconOuterCircle}>
+            <View style={styles.iconInnerCircle}>
+              <Ionicons name={"checkmark"} size={32} color="white" />
             </View>
-            <Headline
-              title="Successfully Verified"
-              description="Your account has been successfully verified.
-"
-            />
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                router.replace("/(tabs)");
-              }}
-            >
-              <Text style={styles.buttonText}>Go to Homepage</Text>
-            </TouchableOpacity>
           </View>
+          <Headline
+            title="Successfully Verified"
+            description="Your account has been successfully verified.
+"
+          />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              router.replace("/(tabs)");
+            }}
+          >
+            <Text style={styles.buttonText}>Go to Homepage</Text>
+          </TouchableOpacity>
         </View>
-      </Modal>
+      </MyModal>
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
           <Headline

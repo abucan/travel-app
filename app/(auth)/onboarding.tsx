@@ -1,12 +1,15 @@
 import { router } from "expo-router";
 import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
+import { MyModal } from "@/components/modal/Modal";
 import { Onboarding } from "@/constants/Onboarding";
+import { globalStyles } from "@/styles/global.styles";
+import { AppButton } from "@/components/buttons/AppButton";
 import { Text, TouchableOpacity, View } from "react-native";
-import { styles } from "@/styles/screens/OnboardingScreen.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SignUpButtons } from "@/components/signUpBtn/SignUpBtn";
+import { styles } from "@/styles/screens/OnboardingScreen.styles";
 import { OnboardingSlide } from "@/components/onboarding/OnboardingSlide";
-import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 
 const OnboardingScreen = () => {
   const swiperRef = useRef<Swiper>(null);
@@ -14,13 +17,11 @@ const OnboardingScreen = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const isLastSlide = activeIndex === Onboarding.length - 1;
 
-  let presentModal: () => void;
+  const [showModal, setShowModal] = useState(false);
 
   const onNextPress = () => {
     if (isLastSlide) {
-      if (presentModal) {
-        presentModal();
-      }
+      setShowModal(true);
     } else {
       swiperRef.current?.scrollBy(1);
     }
@@ -28,49 +29,66 @@ const OnboardingScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeContainer}>
-      <OnboardingModal
-        snapPoints={["35%"]}
-        onPresent={(present) => (presentModal = present)}
-      >
-        <View style={styles.container}>
-          <Swiper
-            ref={swiperRef}
-            loop={false}
-            onIndexChanged={(index) => setActiveIndex(index)}
-          >
-            {Onboarding.map((slide) => (
-              <OnboardingSlide
-                key={slide.id}
-                source={slide.image}
-                header={slide.header}
-                description={slide.description}
-              />
-            ))}
-          </Swiper>
+      <View style={styles.container}>
+        <Swiper
+          ref={swiperRef}
+          loop={false}
+          onIndexChanged={(index) => {
+            setActiveIndex(index);
+          }}
+        >
+          {Onboarding.map((slide) => (
+            <OnboardingSlide
+              key={slide.id}
+              source={slide.image}
+              header={slide.header}
+              description={slide.description}
+            />
+          ))}
+        </Swiper>
+      </View>
+      <View style={styles.sliderBtnContainer}>
+        {!isLastSlide && (
           <TouchableOpacity
-            onPress={() => router.replace("/(auth)/sign-in")}
-            style={styles.skipBtn}
+            style={{ flex: 2 }}
+            onPress={() => swiperRef.current?.scrollTo(Onboarding.length - 1)}
           >
-            <Text style={styles.skipBtnText}>Skip</Text>
+            <Text style={styles.backBtnText}>Skip</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.sliderBtnContainer}>
-          <View>
-            <TouchableOpacity onPress={() => swiperRef.current?.scrollBy(-1)}>
-              <Text style={styles.backBtnText}>
-                {activeIndex !== 0 && "Back"}
+        )}
+        <TouchableOpacity onPress={onNextPress} style={styles.nextBtn}>
+          <Text style={styles.nextBtnText}>
+            {isLastSlide ? "Get Started" : "Continue"}
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <MyModal modalOpen={showModal} setModalOpen={setShowModal}>
+        <View
+          style={{
+            gap: 12,
+          }}
+        >
+          <AppButton
+            title="Create Account"
+            variant="link"
+            onPress={() => {
+              router.replace("/(auth)/sign-up");
+            }}
+          />
+          <SignUpButtons />
+          <View style={{ marginTop: 12 }}>
+            <Text style={globalStyles.smallText}>
+              Already have an account?{" "}
+              <Text
+                style={globalStyles.signText}
+                onPress={() => router.push("/(auth)/sign-in")}
+              >
+                Sign In
               </Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity onPress={onNextPress} style={styles.nextBtn}>
-              <Text style={styles.nextBtnText}>
-                {isLastSlide ? "Get Started" : "Continue"}
-              </Text>
-            </TouchableOpacity>
+            </Text>
           </View>
         </View>
-      </OnboardingModal>
+      </MyModal>
     </SafeAreaView>
   );
 };

@@ -2,6 +2,7 @@ import { z } from "zod";
 import { useState } from "react";
 import { router } from "expo-router";
 import { useAuthStore } from "@/store/authStore";
+import { BrandLogo } from "@/components/logo/Logo";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "@/schemas/auth.schemas";
@@ -61,10 +62,10 @@ const SignInScreen = () => {
       >
         <View style={styles.container}>
           <View style={styles.formContainer}>
+            <BrandLogo />
             <Headline
               title="Welcome back 👋 "
               description="Please enter your email and password."
-              position="left"
             />
 
             <View style={{ gap: 16 }}>
@@ -110,7 +111,7 @@ const SignInScreen = () => {
                 disabled={loading}
               />
               <Text style={styles.alternativeText}>Or using other method</Text>
-              <SignUpButtons isSignIn />
+              <SignUpButtons />
             </View>
           </View>
 

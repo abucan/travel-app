@@ -1,14 +1,17 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+// get screen height
+const { height } = Dimensions.get("screen");
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
-    gap: 24,
+    gap: 36,
     width: "90%",
     marginHorizontal: "auto",
-    paddingTop: 25,
+    paddingTop: height * 0.04,
   },
 
   image: {

@@ -5,7 +5,7 @@ export const BrandLogo = () => {
     <Image
       source={require("@/assets/tripster.png")}
       style={{
-        width: 300,
+        width: 240,
         height: 70,
         alignSelf: "center",
       }}

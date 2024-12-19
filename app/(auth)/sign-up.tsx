@@ -14,6 +14,7 @@ import { View, Text, KeyboardAvoidingView, Platform } from "react-native";
 import { Headline } from "@/components/headline/Headline";
 import { AppButton } from "@/components/buttons/AppButton";
 
+import { BrandLogo } from "@/components/logo/Logo";
 import { useHeaderHeight } from "@react-navigation/elements";
 
 const SignUpScreen = () => {
@@ -57,10 +58,10 @@ const SignUpScreen = () => {
       >
         <View style={styles.container}>
           <View style={styles.formContainer}>
+            <BrandLogo />
             <Headline
               title="Create Account"
               description="Start planning your perfect trip."
-              position="left"
             />
 
             <View style={{ gap: 16 }}>

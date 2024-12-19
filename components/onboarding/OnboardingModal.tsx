@@ -5,7 +5,7 @@ import {
   BottomSheetBackdropProps,
   BottomSheetBackdrop,
 } from "@gorhom/bottom-sheet";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import { router } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import { Headline } from "../headline/Headline";
@@ -13,6 +13,8 @@ import { AppButton } from "../buttons/AppButton";
 import React, { useCallback, useRef } from "react";
 import { styles } from "./styles/OnboardingModal.styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SignUpButtons } from "../signUpBtn/SignUpBtn";
+import { globalStyles } from "@/styles/global.styles";
 
 export const OnboardingModal = ({
   children,
@@ -63,27 +65,28 @@ export const OnboardingModal = ({
           }}
         >
           <BottomSheetView style={styles.bottomSheetView}>
-            <Headline
-              title="Welcome to Tripster"
-              description="Choose one of the options below to get started."
-              position="left"
-            />
             <View style={styles.buttonContainer}>
               <AppButton
                 title="Create Account"
+                variant="link"
                 onPress={() => {
                   router.replace("/(auth)/sign-up");
                   bottomSheetModalRef.current?.dismiss();
                 }}
               />
-              <AppButton
-                title="Sign In"
-                variant="link"
-                onPress={() => {
-                  router.replace("/(auth)/sign-in");
-                  bottomSheetModalRef.current?.dismiss();
-                }}
-              />
+              <Text style={globalStyles.smallText}>Or using other method</Text>
+              <SignUpButtons />
+              <View>
+                <Text style={globalStyles.smallText}>
+                  Already have an account?{" "}
+                  <Text
+                    style={globalStyles.signText}
+                    onPress={() => router.push("/(auth)/sign-in")}
+                  >
+                    Sign In
+                  </Text>
+                </Text>
+              </View>
             </View>
           </BottomSheetView>
         </BottomSheetModal>
