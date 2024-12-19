@@ -1,9 +1,9 @@
 import { Colors } from "@/constants/Colors";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   modal: {
-    margin: 5,
+    margin: 0,
     justifyContent: "flex-end",
     animationName: "slideInUp",
   },
@@ -13,11 +13,13 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
     width: "100%",
     height: "auto",
-    borderRadius: 12,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
     padding: 20,
     marginHorizontal: "auto",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: Colors.light.background,
+    paddingVertical: Platform.OS === "android" ? 24 : 36,
   },
 });

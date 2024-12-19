@@ -8,7 +8,7 @@ const AuthLayout = () => {
     <Stack
       screenOptions={{
         headerShown: false,
-        statusBarStyle: Platform.OS === "android" ? "dark" : "auto",
+        // statusBarStyle: Platform.OS === "android" ? "dark" : "auto",
         statusBarBackgroundColor: Colors.light.background,
         headerStyle: {
           backgroundColor: Colors.light.background,

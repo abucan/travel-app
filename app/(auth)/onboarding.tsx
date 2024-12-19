@@ -66,6 +66,7 @@ const OnboardingScreen = () => {
         <View
           style={{
             gap: 12,
+            width: "100%",
           }}
         >
           <AppButton

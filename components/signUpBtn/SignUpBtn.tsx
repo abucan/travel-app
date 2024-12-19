@@ -26,14 +26,14 @@ export const SignUpButtons = ({
       <TouchableOpacity style={styles.btn} onPress={handleGoogleSignUp}>
         <GoogleIcon style={styles.icon} width={24} height={24} />
         <Text style={styles.btnText}>
-          {isAuthPage ? "Google" : "Continue with Google"}
+          {!isAuthPage ? "Google" : "Continue with Google"}
         </Text>
       </TouchableOpacity>
       {Platform.OS === "ios" && (
         <TouchableOpacity style={styles.btn} onPress={handleAppleSignUp}>
           <AppleIcon style={styles.icon} width={24} height={24} />
           <Text style={styles.btnText}>
-            {isAuthPage ? "Apple" : "Continue with Apple"}
+            {!isAuthPage ? "Apple" : "Continue with Apple"}
           </Text>
         </TouchableOpacity>
       )}
