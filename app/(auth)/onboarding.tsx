@@ -48,19 +48,17 @@ const OnboardingScreen = () => {
         </Swiper>
       </View>
       <View style={styles.sliderBtnContainer}>
+        <AppButton
+          title={isLastSlide ? "Get Started" : "Continue"}
+          onPress={onNextPress}
+        />
         {!isLastSlide && (
           <TouchableOpacity
-            style={{ flex: 2 }}
             onPress={() => swiperRef.current?.scrollTo(Onboarding.length - 1)}
           >
             <Text style={styles.backBtnText}>Skip</Text>
           </TouchableOpacity>
         )}
-        <TouchableOpacity onPress={onNextPress} style={styles.nextBtn}>
-          <Text style={styles.nextBtnText}>
-            {isLastSlide ? "Get Started" : "Continue"}
-          </Text>
-        </TouchableOpacity>
       </View>
       <MyModal modalOpen={showModal} setModalOpen={setShowModal}>
         <View

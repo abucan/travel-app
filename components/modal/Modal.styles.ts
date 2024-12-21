@@ -20,6 +20,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: Colors.light.background,
-    paddingVertical: Platform.OS === "android" ? 24 : 36,
+    paddingVertical: Platform.OS === "android" ? 24 : 32,
   },
 });
