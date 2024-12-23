@@ -5,7 +5,7 @@ import { useAuthStore } from "@/src/store/authStore";
 import { BrandLogo } from "@/src/components/logo/Logo";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signInSchema } from "@/src/schemas/auth.schemas";
+import { signInSchema } from "@/src/utils/schemas/auth.schemas";
 import { styles } from "@/src/styles/screens/AuthScreen.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SignUpButtons } from "@/src/components/signUpBtn/SignUpBtn";

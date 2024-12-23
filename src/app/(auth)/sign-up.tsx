@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { useAuthStore } from "@/src/store/authStore";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema } from "@/src/schemas/auth.schemas";
+import { signUpSchema } from "@/src/utils/schemas/auth.schemas";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "@/src/styles/screens/AuthScreen.styles";
 import { SignUpButtons } from "@/src/components/signUpBtn/SignUpBtn";
