@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { verifyOTPSchema } from "@/src/utils/schemas/auth.schemas";
 import { styles } from "@/src/styles/screens/VerifyOtpScreen.styles";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { AppButton } from "@/src/components/buttons/AppButton";
 
 const VerifyOTPScreen = () => {
   const [loading, setLoading] = useState(false);
@@ -128,17 +129,11 @@ const VerifyOTPScreen = () => {
         )}
 
         <View style={styles.btnContainer}>
-          <TouchableOpacity
-            style={styles.button}
+          <AppButton
+            title="Verify Code"
             onPress={handleSubmit(onSubmit)}
             disabled={loading || !userEmail}
-          >
-            {loading ? (
-              <ActivityIndicator color="white" />
-            ) : (
-              <Text style={styles.buttonText}>Verify Code</Text>
-            )}
-          </TouchableOpacity>
+          />
 
           <TouchableOpacity
             onPress={handleResendOTP}

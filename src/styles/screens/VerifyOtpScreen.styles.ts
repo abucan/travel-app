@@ -73,6 +73,7 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     gap: 16,
+    width: "100%",
   },
 
   button: {

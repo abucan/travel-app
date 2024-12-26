@@ -22,7 +22,7 @@ const FlowScreen = () => {
     return <Redirect href="/(tabs)" />;
   }
 
-  return <Redirect href={"/(auth)/onboarding"} />;
+  return <Redirect href={"/(auth)/verify-otp"} />;
 };
 
 const styles = StyleSheet.create({
