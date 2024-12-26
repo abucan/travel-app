@@ -2,12 +2,12 @@ import { z } from "zod";
 import { useState } from "react";
 import { router } from "expo-router";
 import { useAuthStore } from "@/src/store/authStore";
-import { BrandLogo } from "@/src/components/logo/Logo";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signInSchema } from "@/src/utils/schemas/auth.schemas";
-import { styles } from "@/src/styles/screens/AuthScreen.styles";
+import { BrandLogo } from "@/src/components/logo/Logo";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { styles } from "@/src/styles/screens/AuthScreen.styles";
+import { signInSchema } from "@/src/utils/schemas/auth.schemas";
 import { SignUpButtons } from "@/src/components/signUpBtn/SignUpBtn";
 import { CustomTextInput } from "@/src/components/textInput/TextInput";
 import {
@@ -18,9 +18,9 @@ import {
   Platform,
 } from "react-native";
 
+import { useHeaderHeight } from "@react-navigation/elements";
 import { Headline } from "@/src/components/headline/Headline";
 import { AppButton } from "@/src/components/buttons/AppButton";
-import { useHeaderHeight } from "@react-navigation/elements";
 
 const SignInScreen = () => {
   const signIn = useAuthStore((state) => state.signIn);

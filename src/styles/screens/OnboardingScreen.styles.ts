@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
 
   backBtnText: {
     fontFamily: "Helvetica-Now-Display-Regular",
-    fontSize: 18,
+    fontSize: 16,
     color: "#6b7280",
     width: "100%",
     textAlign: 'center'

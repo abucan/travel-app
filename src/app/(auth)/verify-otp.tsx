@@ -1,15 +1,15 @@
 import { z } from "zod";
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { useAuthStore } from "@/src/store/authStore";
 import { OtpInput } from "react-native-otp-entry";
 import React, { useEffect, useState } from "react";
+import { useAuthStore } from "@/src/store/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { MyModal } from "@/src/components/modal/Modal";
-import { verifyOTPSchema } from "@/src/utils/schemas/auth.schemas";
 import { Headline } from "@/src/components/headline/Headline";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { verifyOTPSchema } from "@/src/utils/schemas/auth.schemas";
 import { styles } from "@/src/styles/screens/VerifyOtpScreen.styles";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 

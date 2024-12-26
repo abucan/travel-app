@@ -1,6 +1,5 @@
 import React from "react";
 import { Stack } from "expo-router";
-// import { Platform } from "react-native";
 import { Colors } from "@/src/constants/Colors";
 
 const AuthLayout = () => {
@@ -8,7 +7,6 @@ const AuthLayout = () => {
     <Stack
       screenOptions={{
         headerShown: false,
-        // statusBarStyle: Platform.OS === "android" ? "dark" : "auto",
         statusBarBackgroundColor: Colors.light.background,
         headerStyle: {
           backgroundColor: Colors.light.background,

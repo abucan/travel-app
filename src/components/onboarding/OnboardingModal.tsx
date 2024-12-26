@@ -5,16 +5,15 @@ import {
   BottomSheetBackdropProps,
   BottomSheetBackdrop,
 } from "@gorhom/bottom-sheet";
-import { Text, View } from "react-native";
 import { router } from "expo-router";
+import { Text, View } from "react-native";
 import { Colors } from "@/src/constants/Colors";
-import { Headline } from "../headline/Headline";
 import { AppButton } from "../buttons/AppButton";
 import React, { useCallback, useRef } from "react";
-import { styles } from "./styles/OnboardingModal.styles";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SignUpButtons } from "../signUpBtn/SignUpBtn";
+import { styles } from "./styles/OnboardingModal.styles";
 import { globalStyles } from "@/src/styles/global.styles";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export const OnboardingModal = ({
   children,
