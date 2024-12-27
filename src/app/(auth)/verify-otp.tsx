@@ -7,6 +7,7 @@ import { useAuthStore } from "@/src/store/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { MyModal } from "@/src/components/modal/Modal";
+import { BrandLogo } from "@/src/components/logo/Logo";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Headline } from "@/src/components/headline/Headline";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -96,6 +97,7 @@ const VerifyOTPScreen = () => {
         </View>
       </MyModal>
       <View style={styles.container}>
+        <BrandLogo />
         <Headline
           title="Verify Your Email Address"
           description={"Enter the code sent to\n"}

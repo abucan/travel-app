@@ -2,6 +2,7 @@ import { styles } from "./AppButton.styles";
 import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { useAnimation } from "@/src/context/AnimationContext";
+import { Colors } from "@/src/constants/Colors";
 
 interface AppButtonProps
   extends Omit<React.ComponentProps<typeof TouchableOpacity>, "style"> {
@@ -26,7 +27,7 @@ export const AppButton = ({
   ];
   const textStyle = [
     styles.buttonText,
-    variant === "link" && { color: "#fff" },
+    variant === "link" && { color: Colors.light.brand },
     props.disabled && styles.disabledButtonText,
   ];
 

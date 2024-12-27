@@ -14,6 +14,7 @@ interface AuthState {
   resendOTP: () => Promise<void>;
   isEmailVerified: boolean;
   checkEmailVerification: () => Promise<boolean>;
+  resetPassword: (email: string) => Promise<void>;
   initializeAuth: () => Promise<(() => void) | void>;
 }
 
@@ -68,6 +69,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       email: state.userEmail,
     });
     if (error) throw error;
+  },
+  // TODO: fix a link at some point
+  resetPassword: async (email: string) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "http://localhost:3000/reset-password",
+    });
+    if (error) throw error;
+
+    set({ userEmail: email });
   },
   checkEmailVerification: async () => {
     const {

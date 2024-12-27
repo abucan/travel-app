@@ -25,4 +25,8 @@ export const verifyOTPSchema = z.object({
   otp: z.string().length(6, "Please enter a valid 6-digit code"),
 });
 
+export const resetPasswordSchema = z.object({
+  email: z.string().email('Invalid email address'),
+});
+
 export type SignUpFormData = z.infer<typeof signUpSchema>;

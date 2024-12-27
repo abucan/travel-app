@@ -26,14 +26,11 @@ export const styles = StyleSheet.create({
 
   linkButton: {
     width: "100%",
-    backgroundColor: "#1e3a8a",
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#1e3a8a",
-    paddingVertical: 14,
+    backgroundColor: Colors.light.background,
+    borderWidth: 0,
     borderRadius: 12,
   },
 
-  // add disabled styles
   disabledButton: {
     backgroundColor: "#ccc",
   },
