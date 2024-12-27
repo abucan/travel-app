@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { OtpInput } from "react-native-otp-entry";
 import React, { useEffect, useState } from "react";
 import { useAuthStore } from "@/src/store/authStore";
+import { AuthApiError } from "@supabase/supabase-js";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { MyModal } from "@/src/components/modal/Modal";
@@ -26,6 +27,7 @@ const VerifyOTPScreen = () => {
   const {
     control,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<z.infer<typeof verifyOTPSchema>>({
     resolver: zodResolver(verifyOTPSchema),
@@ -39,7 +41,11 @@ const VerifyOTPScreen = () => {
       setLoading(true);
       await verifyOTP(values.otp);
       setModalVisible(true);
-    } catch (error) {
+    } catch (error: AuthApiError | any) {
+      setError("otp", {
+        type: "manual",
+        message: error?.message || "Invalid OTP",
+      });
       console.error("Error verifying OTP", error);
     } finally {
       setLoading(false);

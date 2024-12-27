@@ -113,6 +113,7 @@ const SignUpScreen = () => {
               <AppButton
                 title="Sign Up"
                 onPress={handleSubmit(onSubmit)}
+                isLoading={loading}
                 disabled={loading}
               />
               <Text style={styles.text}>Or using other method</Text>

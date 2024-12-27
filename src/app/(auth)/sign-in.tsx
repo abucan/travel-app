@@ -18,6 +18,7 @@ import {
   Platform,
 } from "react-native";
 
+import { AuthApiError } from "@supabase/supabase-js";
 import { Headline } from "@/src/components/headline/Headline";
 import { AppButton } from "@/src/components/buttons/AppButton";
 
@@ -28,6 +29,7 @@ const SignInScreen = () => {
   const {
     control,
     handleSubmit,
+    setError,
     formState: { errors },
     watch,
   } = useForm<z.infer<typeof signInSchema>>({
@@ -45,7 +47,11 @@ const SignInScreen = () => {
       setLoading(true);
       await signIn(values.email, values.password);
       router.replace("/(tabs)");
-    } catch (error) {
+    } catch (error: AuthApiError | any) {
+      setError("root", {
+        type: "manual",
+        message: error?.message || "Invalid email or password",
+      });
       console.error("Error signing in", error);
     } finally {
       setLoading(false);
@@ -108,8 +114,12 @@ const SignInScreen = () => {
               <AppButton
                 title="Sign In"
                 onPress={handleSubmit(onSubmit)}
+                isLoading={loading}
                 disabled={loading}
               />
+              {errors.root && (
+                <Text style={styles.error}>{errors.root.message}</Text>
+              )}
               <Text style={styles.text}>Or using other method</Text>
               <SignUpButtons />
             </View>

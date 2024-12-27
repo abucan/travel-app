@@ -35,10 +35,10 @@ export const styles = StyleSheet.create({
   },
 
   error: {
-    fontFamily: "Helvetica-Now-Display-Regular",
-    fontSize: 14,
-    color: "red",
     textAlign: "center",
+    color: "red",
+    fontFamily: "Helvetica-Now-Display-Medium",
+    fontSize: 14,
     marginTop: Spacing.sm
   },
 

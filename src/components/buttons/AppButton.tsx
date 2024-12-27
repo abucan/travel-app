@@ -21,14 +21,10 @@ export const AppButton = ({
 }: AppButtonProps) => {
   const { isAnimationEnabled } = useAnimation();
 
-  const buttonStyle = [
-    variant === "link" ? styles.linkButton : styles.button,
-    props.disabled && styles.disabledButton,
-  ];
+  const buttonStyle = variant === "link" ? styles.linkButton : styles.button;
   const textStyle = [
     styles.buttonText,
     variant === "link" && { color: Colors.light.brand },
-    props.disabled && styles.disabledButtonText,
   ];
 
   const TextComponent =

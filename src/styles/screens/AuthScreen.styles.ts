@@ -48,4 +48,11 @@ export const styles = StyleSheet.create({
     color: Colors.light.brand,
     textAlign: "right",
   },
+
+  error: {
+    textAlign: "center",
+    color: "red",
+    fontFamily: "Helvetica-Now-Display-Medium",
+    fontSize: 14,
+  }
 });
