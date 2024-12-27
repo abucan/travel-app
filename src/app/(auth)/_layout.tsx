@@ -1,25 +1,33 @@
 import React from "react";
-import { Stack } from "expo-router";
-import { Colors } from "@/src/constants/Colors";
+import { Pressable } from "react-native";
+import { router, Stack } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 const AuthLayout = () => {
   return (
     <Stack
       screenOptions={{
-        headerShown: false,
-        statusBarBackgroundColor: Colors.light.background,
-        headerStyle: {
-          backgroundColor: Colors.light.background,
-        },
+        headerShown: true,
+        headerTitle: "",
         headerTransparent: true,
         headerShadowVisible: false,
         animation: "fade_from_bottom",
+        headerLeft: () => {
+          if (router.canGoBack()) {
+            return (
+              <Pressable onPressIn={() => router.back()}>
+                <Ionicons name="arrow-back" size={24} color="black" />
+              </Pressable>
+            );
+          }
+        },
       }}
     >
       <Stack.Screen name="onboarding" options={{ headerShown: false }} />
       <Stack.Screen name="sign-up" />
       <Stack.Screen name="sign-in" />
       <Stack.Screen name="verify-otp" />
+      <Stack.Screen name="reset-password" />
     </Stack>
   );
 };

@@ -1,5 +1,5 @@
 import { styles } from "./AppButton.styles";
-import { Text, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { useAnimation } from "@/src/context/AnimationContext";
 
@@ -8,21 +8,27 @@ interface AppButtonProps
   title: string;
   variant?: "standard" | "link";
   shouldAnimate?: boolean;
+  isLoading?: boolean;
 }
 
 export const AppButton = ({
   title,
   variant = "standard",
   shouldAnimate = false,
+  isLoading = false,
   ...props
 }: AppButtonProps) => {
   const { isAnimationEnabled } = useAnimation();
 
-  const buttonStyle = variant === "link" ? styles.linkButton : styles.button;
-  const textStyle =
-    variant === "link"
-      ? [styles.buttonText, { color: "#fff" }]
-      : styles.buttonText;
+  const buttonStyle = [
+    variant === "link" ? styles.linkButton : styles.button,
+    props.disabled && styles.disabledButton,
+  ];
+  const textStyle = [
+    styles.buttonText,
+    variant === "link" && { color: "#fff" },
+    props.disabled && styles.disabledButtonText,
+  ];
 
   const TextComponent =
     isAnimationEnabled && shouldAnimate ? Animated.Text : Text;
@@ -38,9 +44,13 @@ export const AppButton = ({
       disabled={props.disabled}
       {...props}
     >
-      <TextComponent {...animationProps} style={textStyle}>
-        {title}
-      </TextComponent>
+      {!isLoading ? (
+        <TextComponent {...animationProps} style={textStyle}>
+          {title}
+        </TextComponent>
+      ) : (
+        <ActivityIndicator />
+      )}
     </TouchableOpacity>
   );
 };

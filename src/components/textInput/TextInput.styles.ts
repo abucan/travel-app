@@ -1,20 +1,21 @@
+import { Spacing } from "@/src/constants/Spacing";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    container: {
+    wrapper: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        gap: 5
+        gap: Spacing.xs
     },
 
-    textLabel: {
+    label: {
         fontFamily: 'Helvetica-Now-Display-Bold',
         fontSize: 16,
     },
 
-    textInputContainer: {
+    container: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -23,11 +24,11 @@ export const styles = StyleSheet.create({
         borderColor: '#CFCFCF',
     },
 
-    textInput: {
+    input: {
         flex: 1,
         fontSize: 14,
-        paddingVertical: 16,
-        paddingHorizontal: 4
+        paddingVertical: Spacing.md,
+        paddingHorizontal: Spacing.xs
     },
 
     icon: {

@@ -10,11 +10,19 @@ export default function HomeScreen() {
     await signOut();
     router.replace("/(auth)/sign-in");
   };
-  // TODO
+
+  // TODO: add index screen
   return (
-    <SafeAreaView className="flex-1 w-full h-full items-center justify-center">
+    <SafeAreaView>
       <TouchableOpacity onPress={handleSignOut}>
-        <Text className="text-white text-center text-lg">Logout</Text>
+        <Text
+          style={{
+            fontSize: 30,
+            color: "red",
+          }}
+        >
+          Logout
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

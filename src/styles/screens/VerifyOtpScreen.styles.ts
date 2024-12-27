@@ -1,78 +1,52 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "@/src/constants/Colors";
+import { Spacing } from "@/src/constants/Spacing";
 
 export const styles = StyleSheet.create({
-  safeContainer: {
+  wrapper: {
     flex: 1,
     backgroundColor: Colors.light.background,
     height: "100%",
   },
 
-  modalContainer: {
-    display: "flex",
-    flexDirection: "column",
+  modalContent: {
+    alignItems: "center",
     width: "100%",
-    height: "auto",
-    borderRadius: 12,
-    padding: 20,
-    marginHorizontal: "auto",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Colors.light.background,
+    gap: Spacing.lg
   },
 
-  body: {
-    alignItems: "center",
-    gap: 24,
-  },
-
-  iconOuterCircle: {
-    backgroundColor: "rgba(30, 58, 138, 0.2)",
-    width: 124,
-    height: 124,
-    borderRadius: 99,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  iconInnerCircle: {
-    backgroundColor: "rgba(30, 58, 138, 1)",
-    width: 84,
-    height: 84,
-    borderRadius: 99,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  mainContainer: {
+  container: {
     flex: 1,
     flexDirection: "column",
     width: "100%",
-    paddingHorizontal: 20,
-    paddingVertical: 32,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.xxl,
     marginHorizontal: "auto",
-    justifyContent: "space-between",
+    gap: Spacing.xl,
     alignItems: "center",
   },
 
-  headerContainer: {
-    gap: 24,
+  content: {
+    alignItems: "center",
+    flex: 1,
+    alignSelf: "center",
+    justifyContent: "space-between",
+    width: "100%",
   },
 
-  errorMsg: {
+  error: {
     fontFamily: "Helvetica-Now-Display-Regular",
     fontSize: 14,
     color: "red",
     textAlign: "center",
+    marginTop: Spacing.sm
   },
 
-  btnContainer: {
+  footer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 16,
+    gap: Spacing.md,
     width: "100%",
   },
 
@@ -90,7 +64,7 @@ export const styles = StyleSheet.create({
     fontFamily: "Helvetica-Now-Display-Regular",
   },
 
-  resendBtnText: {
+  resendText: {
     fontFamily: "Helvetica-Now-Display-Regular",
     fontSize: 16,
     color: "#1e3a8a",

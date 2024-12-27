@@ -15,10 +15,8 @@ import { Headline } from "@/src/components/headline/Headline";
 import { AppButton } from "@/src/components/buttons/AppButton";
 
 import { BrandLogo } from "@/src/components/logo/Logo";
-import { useHeaderHeight } from "@react-navigation/elements";
 
 const SignUpScreen = () => {
-  const headerHeight = useHeaderHeight();
   const signUp = useAuthStore((state) => state.signUp);
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +34,7 @@ const SignUpScreen = () => {
     },
   });
 
-  const password = watch("password");
+  watch("password");
 
   const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
     try {
@@ -51,13 +49,13 @@ const SignUpScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.safeContainer, { paddingTop: headerHeight }]}>
+    <SafeAreaView style={styles.wrapper}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
         <View style={styles.container}>
-          <View style={styles.formContainer}>
+          <View style={styles.form}>
             <BrandLogo />
             <Headline
               title="Create Account"
@@ -111,22 +109,22 @@ const SignUpScreen = () => {
               />
             </View>
 
-            <View style={styles.alternativeContainer}>
+            <View style={styles.section}>
               <AppButton
                 title="Sign Up"
                 onPress={handleSubmit(onSubmit)}
                 disabled={loading}
               />
-              <Text style={styles.alternativeText}>Or using other method</Text>
+              <Text style={styles.text}>Or using other method</Text>
               <SignUpButtons />
             </View>
           </View>
 
           <View>
-            <Text style={styles.alternativeText}>
+            <Text style={styles.text}>
               Already have an account?{" "}
               <Text
-                style={styles.signText}
+                style={styles.link}
                 onPress={() => router.push("/(auth)/sign-in")}
               >
                 Sign In

@@ -11,11 +11,11 @@ export const OnboardingSlide = ({
   description: string;
 }) => {
   return (
-    <View style={styles.container}>
-      <Image source={source} resizeMode="contain" style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.headerText}>{header}</Text>
-        <Text style={styles.descriptionText}>{description}</Text>
+    <View style={styles.slide}>
+      <Image source={source} resizeMode="contain" style={styles.imageWrapper} />
+      <View style={styles.content}>
+        <Text style={styles.title}>{header}</Text>
+        <Text style={styles.description}>{description}</Text>
       </View>
     </View>
   );

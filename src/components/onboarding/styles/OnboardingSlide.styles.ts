@@ -1,37 +1,38 @@
+import { Spacing } from "@/src/constants/Spacing";
 import { StyleSheet, Dimensions } from "react-native";
 
-// get screen height
 const { height } = Dimensions.get("screen");
 
 export const styles = StyleSheet.create({
-  container: {
+  slide: {
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
-    gap: 36,
-    width: "90%",
+    gap: Spacing.xxl,
+    width: "100%",
     marginHorizontal: "auto",
+    paddingHorizontal: 20,
     paddingTop: height * 0.04,
   },
 
-  image: {
+  imageWrapper: {
     flex: 0.6,
   },
 
-  textContainer: {
+  content: {
     alignItems: "center",
-    gap: 4,
+    gap: Spacing.xs,
     flex: 0.4,
   },
 
-  headerText: {
+  title: {
     fontFamily: "Helvetica-Now-Display-Bold",
-    fontSize: 30,
+    fontSize: 28,
     textAlign: "center",
     lineHeight: 36,
   },
 
-  descriptionText: {
+  description: {
     fontFamily: "Helvetica-Now-Display-Regular",
     fontSize: 18,
     textAlign: "center",

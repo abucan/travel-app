@@ -9,7 +9,7 @@ const FlowScreen = () => {
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#1E3A8A" />
+        <ActivityIndicator size="large" color={Colors.light.brand} />
       </View>
     );
   }
@@ -22,7 +22,8 @@ const FlowScreen = () => {
     return <Redirect href="/(tabs)" />;
   }
 
-  return <Redirect href={"/(auth)/verify-otp"} />;
+  // TODO: at some point, show onboarding only once
+  return <Redirect href={"/(auth)/onboarding"} />;
 };
 
 const styles = StyleSheet.create({

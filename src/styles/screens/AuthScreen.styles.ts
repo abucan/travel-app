@@ -1,49 +1,51 @@
-import { Colors } from "@/src/constants/Colors";
 import { StyleSheet } from "react-native";
+import { Colors } from "@/src/constants/Colors";
+import { Spacing } from "@/src/constants/Spacing";
 
 export const styles = StyleSheet.create({
-  safeContainer: {
+  wrapper: {
     flex: 1,
     backgroundColor: Colors.light.background,
     height: "100%",
   },
 
   container: {
-    width: "90%",
+    width: "100%",
     marginHorizontal: "auto",
     flex: 1,
     justifyContent: "space-between",
-    paddingVertical: 32,
+    paddingVertical: Spacing.xxl,
+    paddingHorizontal: Spacing.lg
   },
 
-  formContainer: {
-    gap: 24,
+  form: {
+    gap: Spacing.xl,
   },
 
-  alternativeContainer: {
+  section: {
     display: "flex",
     flexDirection: "column",
-    gap: 24,
+    gap: Spacing.xl,
   },
 
-  alternativeText: {
+  text: {
     fontFamily: "Helvetica-Now-Display-Regular",
     fontSize: 16,
     color: "#6b7280",
     textAlign: "center",
   },
 
-  signText: {
+  link: {
     fontFamily: "Helvetica-Now-Display-Bold",
     fontSize: 16,
-    color: "#1e3a8a",
+    color: Colors.light.brand,
     textDecorationLine: "underline",
   },
 
-  forgotPasswordText: {
+  forgotPassword: {
     fontFamily: "Helvetica-Now-Display-Medium",
     fontSize: 14,
-    color: "#1e3a8a",
+    color: Colors.light.brand,
     textAlign: "right",
   },
 });

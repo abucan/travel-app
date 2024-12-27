@@ -1,28 +1,33 @@
-import { StyleSheet } from "react-native";
+import {  StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  textContainer: {
+  wrapper: {
     width: "100%",
   },
 
-  headerText: {
+  title: {
     fontFamily: "Helvetica-Now-Display-Bold",
     fontSize: 26,
     textAlign: "center",
   },
 
-  descriptionText: {
+  description: {
     fontFamily: "Helvetica-Now-Display-Regular",
     fontSize: 18,
     color: "#6b7280",
     textAlign: "center",
   },
 
-  textLeftAlign: {
+  textLeft: {
     textAlign: "left",
   },
 
-  itemLeftAlign: {
+  contentLeft: {
     alignItems: "flex-start",
   },
+
+  boldText: {
+    fontFamily: "Helvetica-Now-Display-Bold",
+    color: "black"
+    },
 });

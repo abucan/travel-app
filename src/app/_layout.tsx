@@ -68,7 +68,8 @@ export default function RootLayout() {
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
-        <StatusBar style="auto" />
+        {/* TODO: at some point make it dynamic */}
+        <StatusBar style="dark" />
       </ThemeProvider>
     </AnimationProvider>
   );

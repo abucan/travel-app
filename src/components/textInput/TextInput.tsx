@@ -21,14 +21,12 @@ export const CustomTextInput = ({
   };
 
   return (
-    <View style={styles.container}>
-      {label && <Text style={styles.textLabel}>{label}</Text>}
-      <View
-        style={[styles.textInputContainer, error && { borderColor: "red" }]}
-      >
+    <View style={styles.wrapper}>
+      {label && <Text style={styles.label}>{label}</Text>}
+      <View style={[styles.container, error && { borderColor: "red" }]}>
         <Ionicons name={icon} size={24} style={styles.icon} />
         <TextInput
-          style={styles.textInput}
+          style={styles.input}
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}

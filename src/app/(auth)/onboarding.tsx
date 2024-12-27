@@ -1,6 +1,8 @@
 import { router } from "expo-router";
 import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
+import { Colors } from "@/src/constants/Colors";
+import { Spacing } from "@/src/constants/Spacing";
 import { MyModal } from "@/src/components/modal/Modal";
 import { Onboarding } from "@/src/constants/Onboarding";
 import { globalStyles } from "@/src/styles/global.styles";
@@ -27,12 +29,13 @@ const OnboardingScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.safeContainer}>
+    <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
         <Swiper
           ref={swiper}
           loop={false}
           onIndexChanged={(index) => setSlideIndex(index)}
+          activeDotColor={Colors.light.brand}
         >
           {Onboarding.map((slide) => (
             <OnboardingSlide
@@ -44,7 +47,7 @@ const OnboardingScreen = () => {
           ))}
         </Swiper>
       </View>
-      <View style={styles.sliderBtnContainer}>
+      <View style={styles.footer}>
         <AppButton
           key={isLastSlide ? "last" : "continue"}
           title={isLastSlide ? "Get Started" : "Continue"}
@@ -54,28 +57,25 @@ const OnboardingScreen = () => {
         <TouchableOpacity
           onPress={() => swiper.current?.scrollTo(Onboarding.length - 1)}
         >
-          <Text style={styles.backBtnText}>Skip</Text>
+          <Text style={styles.skipText}>Skip</Text>
         </TouchableOpacity>
       </View>
       <MyModal modalOpen={showModal} setModalOpen={setShowModal}>
-        <View style={{ gap: 12, width: "100%" }}>
+        <View style={{ gap: Spacing.md, width: "100%" }}>
           <AppButton
             title="Create Account"
-            variant="link"
             onPress={() => router.replace("/(auth)/sign-up")}
           />
           <SignUpButtons />
-          <View style={{ marginTop: 12 }}>
-            <Text style={globalStyles.smallText}>
-              Already have an account?{" "}
-              <Text
-                style={globalStyles.signText}
-                onPress={() => router.push("/(auth)/sign-in")}
-              >
-                Sign In
-              </Text>
+          <Text style={globalStyles.smallText}>
+            Already have an account?{" "}
+            <Text
+              style={globalStyles.signText}
+              onPress={() => router.push("/(auth)/sign-in")}
+            >
+              Sign In
             </Text>
-          </View>
+          </Text>
         </View>
       </MyModal>
     </SafeAreaView>

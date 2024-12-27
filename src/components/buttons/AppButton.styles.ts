@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "@/src/constants/Colors";
 
 export const styles = StyleSheet.create({
   button: {
     width: "100%",
-    backgroundColor: "#1e3a8a",
+    backgroundColor: Colors.light.brand,
     paddingVertical: 14,
     borderRadius: 12,
     shadowColor: "#000",
@@ -30,5 +31,14 @@ export const styles = StyleSheet.create({
     borderColor: "#1e3a8a",
     paddingVertical: 14,
     borderRadius: 12,
+  },
+
+  // add disabled styles
+  disabledButton: {
+    backgroundColor: "#ccc",
+  },
+
+  disabledButtonText: {
+    color: "#666",
   },
 });

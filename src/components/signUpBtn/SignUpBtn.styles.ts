@@ -1,17 +1,18 @@
 import { Colors } from "@/src/constants/Colors";
+import { Spacing } from "@/src/constants/Spacing";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    container: {
-        gap: 16,
+    wrapper: {
+        gap: Spacing.md,
         display: 'flex',
         flexDirection: 'row'
     },
 
-    btn: {
+    button: {
         width: '100%',
         backgroundColor: Colors.light.background,
-        paddingVertical: 14,
+        paddingVertical: Spacing.md,
         borderRadius: 12,
 
         borderWidth: StyleSheet.hairlineWidth,
@@ -24,7 +25,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    btnText: {
+    text: {
         color: 'black',
         textAlign: 'center',
         fontSize: 16,

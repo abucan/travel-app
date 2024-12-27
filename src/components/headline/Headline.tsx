@@ -5,24 +5,26 @@ export const Headline = ({
   title,
   description,
   position = "center",
+  isBold = false,
+  boldText,
 }: {
   title: string;
   description: string;
   position?: "center" | "left";
+  isBold?: boolean;
+  boldText?: string;
 }) => {
   const textPosition =
-    position === "left" ? styles.itemLeftAlign : styles.textContainer;
+    position === "left" ? styles.contentLeft : styles.wrapper;
 
   return (
-    <View style={[styles.textContainer, textPosition]}>
-      <Text style={styles.headerText}>{title}</Text>
+    <View style={[styles.wrapper, textPosition]}>
+      <Text style={styles.title}>{title}</Text>
       <Text
-        style={[
-          styles.descriptionText,
-          position === "left" && styles.textLeftAlign,
-        ]}
+        style={[styles.description, position === "left" && styles.textLeft]}
       >
-        {description}
+        {description}{" "}
+        {isBold && <Text style={styles.boldText}>{boldText}</Text>}
       </Text>
     </View>
   );

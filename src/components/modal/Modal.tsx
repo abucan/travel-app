@@ -8,24 +8,29 @@ export const MyModal = ({
   setModalOpen,
   children,
   disableOutsideClick = false,
+  isDialog = false,
 }: {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
   disableOutsideClick?: boolean;
+  isDialog?: boolean;
 }) => {
   const closeHandler = () => {
     if (disableOutsideClick) return;
     setModalOpen(false);
   };
 
+  const modalStyle = isDialog ? styles.dialog : styles.modal;
+  const wrapperStyle = isDialog ? styles.dialogWrapper : styles.wrapper;
+
   return (
     <Modal
+      style={modalStyle}
       isVisible={modalOpen}
-      style={styles.modal}
       onBackdropPress={closeHandler}
     >
-      <View style={styles.container}>{children}</View>
+      <View style={[styles.wrapper, wrapperStyle]}>{children}</View>
     </Modal>
   );
 };

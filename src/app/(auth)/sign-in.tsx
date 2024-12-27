@@ -18,13 +18,11 @@ import {
   Platform,
 } from "react-native";
 
-import { useHeaderHeight } from "@react-navigation/elements";
 import { Headline } from "@/src/components/headline/Headline";
 import { AppButton } from "@/src/components/buttons/AppButton";
 
 const SignInScreen = () => {
   const signIn = useAuthStore((state) => state.signIn);
-  const headerHeight = useHeaderHeight();
   const [loading, setLoading] = useState(false);
 
   const {
@@ -40,7 +38,7 @@ const SignInScreen = () => {
     },
   });
 
-  const password = watch("password");
+  watch("password");
 
   const onSubmit = async (values: z.infer<typeof signInSchema>) => {
     try {
@@ -55,13 +53,13 @@ const SignInScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.safeContainer, { paddingTop: headerHeight }]}>
+    <SafeAreaView style={styles.wrapper}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
         <View style={styles.container}>
-          <View style={styles.formContainer}>
+          <View style={styles.form}>
             <BrandLogo />
             <Headline
               title="Welcome back 👋 "
@@ -100,26 +98,26 @@ const SignInScreen = () => {
               />
 
               <TouchableOpacity>
-                <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+                <Text style={styles.forgotPassword}>Forgot Password?</Text>
               </TouchableOpacity>
             </View>
 
-            <View style={styles.alternativeContainer}>
+            <View style={styles.section}>
               <AppButton
                 title="Sign In"
                 onPress={handleSubmit(onSubmit)}
                 disabled={loading}
               />
-              <Text style={styles.alternativeText}>Or using other method</Text>
+              <Text style={styles.text}>Or using other method</Text>
               <SignUpButtons />
             </View>
           </View>
 
           <View>
-            <Text style={styles.alternativeText}>
+            <Text style={styles.text}>
               Don't have an account?{" "}
               <Text
-                style={styles.signText}
+                style={styles.link}
                 onPress={() => router.push("/(auth)/sign-up")}
               >
                 Sign Up

@@ -7,12 +7,12 @@ import { useAuthStore } from "@/src/store/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { MyModal } from "@/src/components/modal/Modal";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Headline } from "@/src/components/headline/Headline";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { AppButton } from "@/src/components/buttons/AppButton";
 import { verifyOTPSchema } from "@/src/utils/schemas/auth.schemas";
 import { styles } from "@/src/styles/screens/VerifyOtpScreen.styles";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import { AppButton } from "@/src/components/buttons/AppButton";
 
 const VerifyOTPScreen = () => {
   const [loading, setLoading] = useState(false);
@@ -75,77 +75,84 @@ const VerifyOTPScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.safeContainer}>
+    <SafeAreaView style={styles.wrapper}>
       <MyModal
+        isDialog
         modalOpen={modalVisible}
         setModalOpen={setModalVisible}
         disableOutsideClick
       >
-        <View style={styles.body}>
-          <View style={styles.iconOuterCircle}>
-            <View style={styles.iconInnerCircle}>
-              <Ionicons name={"checkmark"} size={32} color="white" />
-            </View>
-          </View>
+        <View style={styles.modalContent}>
+          <Ionicons name="checkmark-circle" size={48} color="green" />
           <Headline
             title="Successfully Verified"
             description="Your account has been successfully verified.
 "
           />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              router.replace("/(tabs)");
-            }}
-          >
-            <Text style={styles.buttonText}>Go to Homepage</Text>
-          </TouchableOpacity>
+          <AppButton
+            title="Sign In Now"
+            onPress={() => router.replace("/(auth)/sign-in")}
+          />
         </View>
       </MyModal>
-      <View style={styles.mainContainer}>
-        <View style={styles.headerContainer}>
-          <Headline
-            title="Verification Code"
-            description={`We have sent the verification code to ${
-              userEmail || ""
-            }.`}
-            position="left"
-          />
-          <Controller
-            control={control}
-            name="otp"
-            render={({ field: { onChange } }) => (
-              <OtpInput
-                type="numeric"
-                numberOfDigits={6}
-                onTextChange={onChange}
-              />
-            )}
-          />
-        </View>
+      <View style={styles.container}>
+        <Headline
+          title="Verify Your Email Address"
+          description={"Enter the code sent to\n"}
+          boldText={userEmail || "ante.bucan.st@gmail.com"}
+          isBold
+        />
 
-        {errors.otp && (
-          <Text style={styles.errorMsg}>{errors.otp.message}</Text>
-        )}
-
-        <View style={styles.btnContainer}>
-          <AppButton
-            title="Verify Code"
-            onPress={handleSubmit(onSubmit)}
-            disabled={loading || !userEmail}
-          />
-
-          <TouchableOpacity
-            onPress={handleResendOTP}
-            disabled={loading || !canResend || !userEmail}
-            style={{
-              opacity: !canResend ? 0.5 : 1,
-            }}
-          >
-            <Text style={styles.resendBtnText}>
-              {canResend ? "Resend Code" : `Resend Code (${timer}s)`}
+        <View style={styles.content}>
+          <View>
+            <Text style={{ color: "gray", textAlign: "center" }}>
+              6 Digit OTP Code
             </Text>
-          </TouchableOpacity>
+            <Controller
+              control={control}
+              name="otp"
+              render={({ field: { onChange } }) => (
+                <OtpInput
+                  type="numeric"
+                  numberOfDigits={6}
+                  onTextChange={onChange}
+                  theme={{
+                    pinCodeContainerStyle: {
+                      width: 52,
+                      borderTopWidth: 0,
+                      borderBottomWidth: 1,
+                      borderLeftWidth: 0,
+                      borderRightWidth: 0,
+                      borderRadius: 0,
+                    },
+                  }}
+                />
+              )}
+            />
+            {errors.otp && (
+              <Text style={styles.error}>{errors.otp.message}</Text>
+            )}
+          </View>
+          <View style={styles.footer}>
+            <AppButton
+              title="Verify Code"
+              onPress={handleSubmit(onSubmit)}
+              isLoading={loading}
+              disabled={loading || !userEmail}
+            />
+
+            <TouchableOpacity
+              onPress={handleResendOTP}
+              disabled={loading || !canResend || !userEmail}
+              style={{
+                opacity: !canResend ? 0.5 : 1,
+              }}
+            >
+              <Text style={styles.resendText}>
+                {canResend ? "Resend Code" : `Resend Code (${timer}s)`}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </SafeAreaView>
