@@ -1,12 +1,18 @@
 import { Image } from "react-native";
 
-export const BrandLogo = () => {
+export const BrandLogo = ({
+  width,
+  height,
+}: {
+  width?: number;
+  height?: number;
+}) => {
   return (
     <Image
       source={require("@/src/assets/tripster.png")}
       style={{
-        width: 240,
-        height: 70,
+        width: width || 240,
+        height: height || 70,
         alignSelf: "center",
       }}
     />

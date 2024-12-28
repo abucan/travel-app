@@ -9,3 +9,8 @@ interface CustomTextInputProps {
     secureTextEntry?: boolean;
     error?: string;
   }
+
+  interface FeatureItemProps {
+    icon: keyof typeof Ionicons.glyphMap;
+    title: string;
+  }
