@@ -61,19 +61,19 @@ export const TabBar = ({
             testID={options.tabBarButtonTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={styles.tabBarItem}
+            style={isFocused ? styles.tabBarItemActive : styles.tabBarItem}
           >
             {icons[route.name as TabRouteName]({
-              color: isFocused ? "red" : Colors.light.text,
+              color: isFocused ? "white" : Colors.light.text,
               size: 26,
             })}
             <Text
               style={{
-                color: isFocused ? "red" : Colors.light.text,
+                color: isFocused ? "white" : Colors.light.text,
                 fontSize: 11,
               }}
             >
-              {label.toString() || ""}
+              {isFocused ? label.toString() : ""}
             </Text>
           </TouchableOpacity>
         );

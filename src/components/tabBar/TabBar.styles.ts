@@ -1,30 +1,36 @@
+import { Colors } from "@/src/constants/Colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    container: {
-        position: "absolute",
-        bottom: 25,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        marginHorizontal: 20,
-        padding: 15,
-        borderRadius: 16,
-        borderCurve: 'continuous',
-        shadowColor: 'black',
-        shadowOffset: {
-            width: 0,
-            height: 10
-        },
-        shadowRadius: 10,
-        shadowOpacity: 0.1
-    },
+  container: {
+    backgroundColor: "white",
+    position: "absolute",
+    bottom: 0,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 14,
+    width: "100%",
+  },
 
-    tabBarItem: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 4
-    }
+  tabBarItem: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    padding: 10,
+  },
+
+  tabBarItemActive: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 12,
+    flexDirection: "row",
+    backgroundColor: Colors.light.brand,
+    borderRadius: 24,
+    borderCurve: "continuous",
+    paddingVertical: 10,
+    paddingHorizontal: 0,
+  },
 });

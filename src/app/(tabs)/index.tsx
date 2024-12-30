@@ -1,6 +1,6 @@
 // import { router } from "expo-router";
 // import { useAuthStore } from "@/src/store/authStore";
-import { Image, ScrollView, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SearchBar } from "@/src/components/searchBar/SearchBar";
 import { FeaturesList } from "@/src/components/features/FeaturesList";
 import { styles } from "@/src/styles/screens/(authenticated)/HomeScreen.styles";
@@ -32,6 +32,32 @@ export default function HomeScreen() {
         </View>
 
         <SearchBar />
+        <FeaturesList />
+
+        <View style={styles.wrapper1}>
+          <View style={styles.header}>
+            <Text>Upcoming Trip</Text>
+            <Text>5d : 18: 30s</Text>
+          </View>
+          <View style={styles.imageWrapper1}>
+            <Image
+              source={require("@/src/assets/city.png")}
+              style={styles.image1}
+            />
+            <View style={styles.imageFooter}>
+              <View>
+                <Text>Paris, France</Text>
+                <Text>10 people</Text>
+              </View>
+              <TouchableOpacity>
+                <Text>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        {/* delete later*/}
+        <FeaturesList />
+        <FeaturesList />
         <FeaturesList />
       </ScrollView>
     </View>
