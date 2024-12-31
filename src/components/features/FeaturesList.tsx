@@ -1,6 +1,5 @@
 import { FlatList } from "react-native";
 import { FeatureItem } from "./FeatureItem";
-import { Ionicons } from "@expo/vector-icons";
 import { features } from "@/src/utils/mockData/features";
 
 export const FeaturesList = () => {
@@ -20,10 +19,7 @@ export const FeaturesList = () => {
         justifyContent: "space-between",
       }}
       renderItem={({ item }) => (
-        <FeatureItem
-          icon={item.icon as keyof typeof Ionicons.glyphMap}
-          title={item.title}
-        />
+        <FeatureItem icon={item.icon} title={item.title} />
       )}
     />
   );

@@ -1,25 +1,13 @@
-import { Colors } from "@/src/constants/Colors";
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { Text, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { styles } from "./TabBar.styles";
-import { AntDesign } from "@expo/vector-icons";
+import { TabBarButton } from "./TabBarButton";
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 
 export const TabBar = ({
   state,
   descriptors,
   navigation,
 }: BottomTabBarProps) => {
-  type TabRouteName = "index" | "explore" | "profile";
-
-  const icons: Record<
-    TabRouteName,
-    (props: { color: string; size: number }) => JSX.Element
-  > = {
-    index: (props) => <AntDesign name="home" {...props} />,
-    explore: (props) => <AntDesign name="search1" {...props} />,
-    profile: (props) => <AntDesign name="user" {...props} />,
-  };
-
   return (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
@@ -53,29 +41,14 @@ export const TabBar = ({
         };
 
         return (
-          <TouchableOpacity
+          <TabBarButton
             key={route.name}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarButtonTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={isFocused ? styles.tabBarItemActive : styles.tabBarItem}
-          >
-            {icons[route.name as TabRouteName]({
-              color: isFocused ? "white" : Colors.light.text,
-              size: 26,
-            })}
-            <Text
-              style={{
-                color: isFocused ? "white" : Colors.light.text,
-                fontSize: 11,
-              }}
-            >
-              {isFocused ? label.toString() : ""}
-            </Text>
-          </TouchableOpacity>
+            isFocused={isFocused}
+            routeName={route.name}
+            label={label.toString() || ""}
+          />
         );
       })}
     </View>

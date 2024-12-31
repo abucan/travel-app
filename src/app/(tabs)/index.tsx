@@ -6,6 +6,8 @@ import { FeaturesList } from "@/src/components/features/FeaturesList";
 import { styles } from "@/src/styles/screens/(authenticated)/HomeScreen.styles";
 
 import Tripster from "@/src/assets/tripster.svg";
+// TODO: change name once is published to git
+import { TripCard } from "@/src/components/tripCard/tripCard";
 
 export default function HomeScreen() {
   // const signOut = useAuthStore((state) => state.signOut);
@@ -33,28 +35,7 @@ export default function HomeScreen() {
 
         <SearchBar />
         <FeaturesList />
-
-        <View style={styles.wrapper1}>
-          <View style={styles.header}>
-            <Text>Upcoming Trip</Text>
-            <Text>5d : 18: 30s</Text>
-          </View>
-          <View style={styles.imageWrapper1}>
-            <Image
-              source={require("@/src/assets/city.png")}
-              style={styles.image1}
-            />
-            <View style={styles.imageFooter}>
-              <View>
-                <Text>Paris, France</Text>
-                <Text>10 people</Text>
-              </View>
-              <TouchableOpacity>
-                <Text>Cancel</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <TripCard />
         {/* delete later*/}
         <FeaturesList />
         <FeaturesList />
