@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { styles } from "./TabBar.styles";
 import { Icons } from "@/src/constants/Icons";
 import { Text, Pressable } from "react-native";
+import { TabBarButtonProps } from "@/src/types";
 import { Colors } from "@/src/constants/Colors";
 
 import Animated, {
@@ -10,14 +11,6 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
-
-interface TabBarButtonProps {
-  onPress: () => void;
-  onLongPress: () => void;
-  isFocused: boolean;
-  routeName: string;
-  label: string;
-}
 
 type TabRouteName = "index" | "explore" | "profile";
 

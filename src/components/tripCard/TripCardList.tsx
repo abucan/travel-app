@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Header } from "../header/Header";
 import { TripCardItem } from "./TripCardItem";
 import { styles } from "./TripCardList.styles";
 import { FlatList, View, ViewToken } from "react-native";
 import { recommendedTrips } from "@/src/utils/mockData/recommendedTrips";
 
+// animations
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
+
 export const TripCardList = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const dotWidths = useRef(
+    recommendedTrips.map(() => useSharedValue(10))
+  ).current;
 
   const onViewableItemsChanged = ({
     viewableItems,
@@ -14,7 +25,12 @@ export const TripCardList = () => {
     viewableItems: ViewToken[];
   }) => {
     if (viewableItems.length > 0 && viewableItems[0].index !== null) {
-      setCurrentIndex(viewableItems[0].index);
+      const newIndex = viewableItems[0].index;
+      setCurrentIndex(newIndex);
+
+      dotWidths.forEach((width, index) => {
+        width.value = index === newIndex ? withSpring(20) : withSpring(10);
+      });
     }
   };
 
@@ -41,12 +57,22 @@ export const TripCardList = () => {
         renderItem={({ item }) => <TripCardItem {...item} />}
       />
       <View style={styles.indicatorContainer}>
-        {recommendedTrips.map((_, index) => (
-          <View
-            key={index}
-            style={[styles.dot, index === currentIndex && styles.activeDot]}
-          />
-        ))}
+        {recommendedTrips.map((_, index) => {
+          const animatedDotStyle = useAnimatedStyle(() => ({
+            width: dotWidths[index].value,
+          }));
+
+          return (
+            <Animated.View
+              key={index}
+              style={[
+                styles.dot,
+                index === currentIndex && styles.activeDot,
+                animatedDotStyle,
+              ]}
+            />
+          );
+        })}
       </View>
     </>
   );

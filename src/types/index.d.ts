@@ -31,3 +31,10 @@ interface TripCardItemProps {
   nights: number;
   pricePerPerson: number;
 }
+interface TabBarButtonProps {
+  onPress: () => void;
+  onLongPress: () => void;
+  isFocused: boolean;
+  routeName: string;
+  label: string;
+}
