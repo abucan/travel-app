@@ -3,11 +3,10 @@
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SearchBar } from "@/src/components/searchBar/SearchBar";
 import { FeaturesList } from "@/src/components/features/FeaturesList";
+import { TripCardList } from "@/src/components/tripCard/TripCardList";
 import { styles } from "@/src/styles/screens/(authenticated)/HomeScreen.styles";
 
 import Tripster from "@/src/assets/tripster.svg";
-// TODO: change name once is published to git
-import { TripCard } from "@/src/components/tripCard/tripCard";
 
 export default function HomeScreen() {
   // const signOut = useAuthStore((state) => state.signOut);
@@ -35,9 +34,9 @@ export default function HomeScreen() {
 
         <SearchBar />
         <FeaturesList />
-        <TripCard />
+        <TripCardList />
+
         {/* delete later*/}
-        <FeaturesList />
         <FeaturesList />
         <FeaturesList />
       </ScrollView>

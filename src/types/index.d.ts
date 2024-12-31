@@ -15,3 +15,19 @@ interface FeatureItemProps {
   icon: React.ReactElement;
   title: string;
 }
+
+interface HeaderProps {
+  title: string;
+  cta?: boolean;
+  ctaText?: string;
+}
+
+interface TripCardItemProps {
+  id: number;
+  city: string;
+  country: string;
+  image: ImageSourcePropType;
+  days: number;
+  nights: number;
+  pricePerPerson: number;
+}
