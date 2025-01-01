@@ -1,8 +1,8 @@
 import { router } from "expo-router";
 import Swiper from "react-native-swiper";
-import { useRef, useState } from "react";
 import { Colors } from "@/src/constants/Colors";
 import { Spacing } from "@/src/constants/Spacing";
+import { useEffect, useRef, useState } from "react";
 import { MyModal } from "@/src/components/modal/Modal";
 import { Onboarding } from "@/src/constants/Onboarding";
 import { globalStyles } from "@/src/styles/global.styles";
@@ -12,6 +12,11 @@ import { AppButton } from "@/src/components/buttons/AppButton";
 import { SignUpButtons } from "@/src/components/signUpBtn/SignUpBtn";
 import { styles } from "@/src/styles/screens/OnboardingScreen.styles";
 import { OnboardingSlide } from "@/src/components/onboarding/OnboardingSlide";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
 
 const OnboardingScreen = () => {
   const swiper = useRef<Swiper>(null);
@@ -28,14 +33,38 @@ const OnboardingScreen = () => {
     }
   };
 
+  useEffect(() => {
+    dotWidths[0].value = withSpring(20);
+  }, []);
+
+  const dotWidths = useRef(
+    Onboarding.map(() => useSharedValue(10)) // Default width for all dots
+  ).current;
+
+  const handleSlideChange = (index: number) => {
+    setSlideIndex(index);
+
+    // Reset all dots and animate the active one
+    dotWidths.forEach((width, i) => {
+      width.value = i === index ? withSpring(20) : withSpring(10);
+    });
+  };
+
+  const animatedDotStyles = dotWidths.map((width) =>
+    useAnimatedStyle(() => ({
+      width: width.value,
+    }))
+  );
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
         <Swiper
           ref={swiper}
           loop={false}
-          onIndexChanged={(index) => setSlideIndex(index)}
+          onIndexChanged={handleSlideChange}
           activeDotColor={Colors.light.brand}
+          showsPagination={true}
         >
           {Onboarding.map((slide) => (
             <OnboardingSlide
@@ -46,6 +75,20 @@ const OnboardingScreen = () => {
             />
           ))}
         </Swiper>
+        {/* <View style={styles.indicatorContainer}>
+          {Onboarding.map((_, index) => {
+            return (
+              <Animated.View
+                key={index}
+                style={[
+                  styles.dot,
+                  index === slideIndex && styles.activeDot,
+                  animatedDotStyles[index],
+                ]}
+              />
+            );
+          })}
+        </View> */}
       </View>
       <View style={styles.footer}>
         <AppButton

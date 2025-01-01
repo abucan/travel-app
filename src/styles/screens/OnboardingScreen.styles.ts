@@ -30,4 +30,23 @@ export const styles = StyleSheet.create({
     width: "100%",
     textAlign: 'center'
   },
+
+  indicatorContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 16,
+  },
+
+  dot: {
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    backgroundColor: "#ccc",
+    marginHorizontal: 5,
+  },
+  activeDot: {
+    backgroundColor: Colors.light.brand,
+  },
+  
 });

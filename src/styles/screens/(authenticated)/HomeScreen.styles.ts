@@ -14,14 +14,14 @@ export const styles = StyleSheet.create({
   },
 
   imageWrapper: {
-    height: 500,
+    height: 250,
     overflow: "hidden",
     position: "relative",
   },
 
   image: {
     width: "100%",
-    height: 500,
+    height: 250,
     transform: [{ scale: 1 }],
   },
 
@@ -30,9 +30,10 @@ export const styles = StyleSheet.create({
     display: "flex",
     width: "100%",
     alignItems: "center",
-    bottom: "50%",
+    top: "50%",
     left: 0,
     right: 0,
+    transform: [{ translateY: -37.5 }],
   },
 
   overlay: {
