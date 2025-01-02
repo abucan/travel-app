@@ -14,13 +14,13 @@ const FlowScreen = () => {
     );
   }
 
-  // if (user && !isEmailVerified) {
-  //   return <Redirect href="/(auth)/verify-otp" />;
-  // }
+  if (user && !isEmailVerified) {
+    return <Redirect href="/(auth)/verify-otp" />;
+  }
 
-  // if (user && isEmailVerified) {
-  //   return <Redirect href="/(tabs)" />;
-  // }
+  if (user && isEmailVerified) {
+    return <Redirect href="/(tabs)" />;
+  }
 
   // TODO: at some point, show onboarding only once
   return <Redirect href={"/(auth)/onboarding"} />;

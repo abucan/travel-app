@@ -19,21 +19,17 @@ export const styles = StyleSheet.create({
     position: "relative",
   },
 
-  image: {
-    width: "100%",
-    height: 250,
-    transform: [{ scale: 1 }],
-  },
-
   logo: {
     position: "absolute",
     display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     width: "100%",
     alignItems: "center",
-    top: "50%",
+    marginHorizontal: 'auto',
+    paddingHorizontal: 20,
     left: 0,
     right: 0,
-    transform: [{ translateY: -37.5 }],
   },
 
   overlay: {
@@ -43,5 +39,23 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+
+  featureItemWrapper: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+
+  feature: {
+    display: "flex",
+    borderRadius: 12,
+    padding: 8,  
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 1)",
+    boxShadow: "0px 0px 20px -10px rgba(0, 0, 0, 0.16)",
   },
 });
