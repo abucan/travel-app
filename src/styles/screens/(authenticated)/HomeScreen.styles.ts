@@ -19,15 +19,21 @@ export const styles = StyleSheet.create({
     position: "relative",
   },
 
+  image: {
+    width: "100%",
+    height: "100%",
+    transform: [{ scale: 1 }],
+  },
+
   logo: {
     position: "absolute",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     width: "100%",
     alignItems: "center",
-    marginHorizontal: 'auto',
-    paddingHorizontal: 20,
+    top: 0,
+    bottom: 0,
     left: 0,
     right: 0,
   },
@@ -51,7 +57,7 @@ export const styles = StyleSheet.create({
   feature: {
     display: "flex",
     borderRadius: 12,
-    padding: 8,  
+    padding: 8,
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "center",
