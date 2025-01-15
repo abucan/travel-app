@@ -1,5 +1,5 @@
-import { Spacing } from "@/src/constants/Spacing";
 import { StyleSheet } from "react-native";
+import { Spacing } from "@/src/constants/Spacing";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -11,24 +11,31 @@ export const styles = StyleSheet.create({
   },
 
   label: {
-    fontFamily: "Helvetica-Now-Display-Bold",
-    fontSize: 16,
+    color: "#6b7280",
+    fontFamily: "Helvetica-Now-Display-Regular",
+    fontSize: 14,
   },
 
   container: {
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: "column",
+    alignItems: "flex-start",
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 12,
     borderColor: "#CFCFCF",
+
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    gap: 8,
   },
 
   input: {
     flex: 1,
     fontSize: 14,
-    paddingVertical: Spacing.md,
-    paddingHorizontal: Spacing.xs,
+  },
+
+  textarea: {
+    height: 125,
   },
 
   icon: {

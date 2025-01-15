@@ -3,18 +3,19 @@
 import { LogoIcon } from "@/src/components/logo/LogoIcon";
 import { Image, ScrollView, Text, View } from "react-native";
 import { SearchBar } from "@/src/components/searchBar/SearchBar";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { FeaturesList } from "@/src/components/features/FeaturesList";
 import { TripCardList } from "@/src/components/tripCard/TripCardList";
 import { styles } from "@/src/styles/screens/(authenticated)/HomeScreen.styles";
 
 // expo status bar
 import { StatusBar } from "expo-status-bar";
-import Arrow from "@/src/assets/arrow.svg";
+import { recommendedTrips } from "@/src/utils/mockData/recommendedTrips";
+import { useState } from "react";
+import { TripCardItemProps } from "@/src/types";
 
 export default function HomeScreen() {
   // const signOut = useAuthStore((state) => state.signOut);
-  const insets = useSafeAreaInsets();
+  const [upcomingTrips, setUpcomingTrips] = useState<TripCardItemProps[]>([]);
 
   // const handleSignOut = async () => {
   //   await signOut();
@@ -24,7 +25,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.wrapper}>
       <StatusBar style="light" />
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.imageWrapper}>
           <Image
             source={require("@/src/assets/Designer5.png")}
@@ -54,23 +55,26 @@ export default function HomeScreen() {
               </Text>
             </View>
           </View>
-          {/* <View style={styles.logo}>
-            <Arrow
-              height={70}
-              color={"white"}
-              rotation={110}
-              style={{ top: 55, right: 40, zIndex: 100 }}
-            />
-          </View> */}
         </View>
 
         <SearchBar />
         <FeaturesList />
-        <TripCardList />
+        {upcomingTrips.length > 0 && (
+          <TripCardList
+            title="Upcoming Trip"
+            trips={upcomingTrips}
+            type="upcoming"
+          />
+        )}
+        <TripCardList
+          cta
+          ctaText="See all"
+          title="Recommended Trips"
+          trips={recommendedTrips}
+          type="recommended"
+        />
 
-        {/* delete later*/}
-        <FeaturesList />
-        <FeaturesList />
+        <View style={{ marginTop: 50 }} />
       </ScrollView>
     </View>
   );

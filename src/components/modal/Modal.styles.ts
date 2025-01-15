@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
 
   dialog: {
     margin: 10,
-    justifyContent: 'center',
+    justifyContent: "center",
     animationName: "slideInUp",
   },
 
@@ -31,6 +31,33 @@ export const styles = StyleSheet.create({
   },
 
   dialogWrapper: {
-    borderRadius: 12
-  }
+    borderRadius: 12,
+  },
+
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    marginBottom: 24,
+  },
+
+  title: {
+    fontFamily: "Helvetica-Now-Display-Bold",
+    fontSize: 24,
+  },
+
+  close: {
+    position: "absolute",
+    top: 15,
+    left: 15,
+    backgroundColor: "lightgray",
+    borderRadius: 100,
+    padding: 5,
+  },
+
+  icon: {
+    color: "gray",
+  },
 });

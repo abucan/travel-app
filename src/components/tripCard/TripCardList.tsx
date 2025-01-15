@@ -3,7 +3,6 @@ import { Header } from "../header/Header";
 import { TripCardItem } from "./TripCardItem";
 import { styles } from "./TripCardList.styles";
 import { FlatList, View, ViewToken } from "react-native";
-import { recommendedTrips } from "@/src/utils/mockData/recommendedTrips";
 
 // animations
 import Animated, {
@@ -11,13 +10,17 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { TripCardListProps } from "@/src/types";
 
-export const TripCardList = () => {
+export const TripCardList = ({
+  trips,
+  title,
+  cta,
+  ctaText,
+}: TripCardListProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const dotWidths = useRef(
-    recommendedTrips.map(() => useSharedValue(10))
-  ).current;
+  const dotWidths = useRef(trips.map(() => useSharedValue(10))).current;
 
   const onViewableItemsChanged = ({
     viewableItems,
@@ -40,9 +43,9 @@ export const TripCardList = () => {
 
   return (
     <>
-      <Header title="Recommended Trips" cta ctaText="See all" />
+      <Header title={title} cta={cta} ctaText={ctaText} />
       <FlatList
-        data={recommendedTrips}
+        data={trips}
         keyExtractor={(item) => item.id.toString()}
         horizontal
         pagingEnabled
@@ -56,24 +59,26 @@ export const TripCardList = () => {
         }}
         renderItem={({ item }) => <TripCardItem {...item} />}
       />
-      <View style={styles.indicatorContainer}>
-        {recommendedTrips.map((_, index) => {
-          const animatedDotStyle = useAnimatedStyle(() => ({
-            width: dotWidths[index].value,
-          }));
+      {trips.length > 0 && (
+        <View style={styles.indicatorContainer}>
+          {trips.map((_, index) => {
+            const animatedDotStyle = useAnimatedStyle(() => ({
+              width: dotWidths[index].value,
+            }));
 
-          return (
-            <Animated.View
-              key={index}
-              style={[
-                styles.dot,
-                index === currentIndex && styles.activeDot,
-                animatedDotStyle,
-              ]}
-            />
-          );
-        })}
-      </View>
+            return (
+              <Animated.View
+                key={index}
+                style={[
+                  styles.dot,
+                  index === currentIndex && styles.activeDot,
+                  animatedDotStyle,
+                ]}
+              />
+            );
+          })}
+        </View>
+      )}
     </>
   );
 };

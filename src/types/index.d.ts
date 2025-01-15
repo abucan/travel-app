@@ -22,6 +22,14 @@ interface HeaderProps {
   ctaText?: string;
 }
 
+interface TripCardListProps {
+  trips: TripCardItemProps[];
+  type: "upcoming" | "recommended";
+  title: string;
+  cta?: boolean;
+  ctaText?: string;
+}
+
 interface TripCardItemProps {
   id: number;
   city: string;
@@ -30,6 +38,9 @@ interface TripCardItemProps {
   days: number;
   nights: number;
   pricePerPerson: number;
+  generatedBy?: string;
+  isUpcoming?: boolean;
+  date?: Date;
 }
 interface TabBarButtonProps {
   onPress: () => void;

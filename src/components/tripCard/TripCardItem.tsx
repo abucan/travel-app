@@ -16,6 +16,7 @@ export const TripCardItem = ({
   days,
   nights,
   pricePerPerson,
+  generatedBy,
 }: TripCardItemProps) => {
   return (
     <View style={styles.wrapper}>
@@ -28,7 +29,9 @@ export const TripCardItem = ({
 
           <View style={styles.imageLabel}>
             <FontAwesome6 name="wand-magic-sparkles" size={14} color="#fff" />
-            <Text style={{ color: "#fff" }}>AI Generated</Text>
+            <Text style={{ color: "#fff" }}>
+              {generatedBy || "AI Generated"}
+            </Text>
           </View>
         </View>
         <View style={styles.cardFooter}>

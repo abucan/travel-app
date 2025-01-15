@@ -1,7 +1,8 @@
-import { View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Modal from "react-native-modal";
 
 import { styles } from "./Modal.styles";
+import { Ionicons } from "@expo/vector-icons";
 
 export const MyModal = ({
   modalOpen,
@@ -29,8 +30,25 @@ export const MyModal = ({
       style={modalStyle}
       isVisible={modalOpen}
       onBackdropPress={closeHandler}
+      animationIn={"slideInUp"}
+      animationOut={"slideOutDown"}
+      animationInTiming={400}
+      animationOutTiming={600}
     >
-      <View style={[styles.wrapper, wrapperStyle]}>{children}</View>
+      <View style={[styles.wrapper, wrapperStyle]}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Modal</Text>
+        </View>
+        <Pressable style={styles.close} onPress={() => setModalOpen(false)}>
+          <Ionicons
+            name="close"
+            size={24}
+            onPress={() => setModalOpen(false)}
+            style={styles.icon}
+          />
+        </Pressable>
+        {children}
+      </View>
     </Modal>
   );
 };
